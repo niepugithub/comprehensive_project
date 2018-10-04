@@ -89,6 +89,19 @@ public class RedisService {
         }
     }
 
+    // 判断key是否已经存在
+    public <T> boolean exists(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            // 生成真正的key
+            String realKey=prefix.getPrefix()+key;
+            return jedis.exists(realKey);
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
     private <T> String beanToString(T value) {
         // 如果value不是字符串而是int咋办？需要校验判断
         if(value==null){
