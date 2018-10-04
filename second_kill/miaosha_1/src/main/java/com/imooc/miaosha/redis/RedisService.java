@@ -18,6 +18,13 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisService {
     @Autowired
     JedisPool jedisPool;
+    /*
+     * description: 获取单个对象，没有额外的前缀
+     * author:niepu
+     * param: [key, clazz]
+     * date: 2018-10-04 18:33:23
+     * return: T
+     **/
     public <T> T get(String key,Class<T> clazz){
         Jedis jedis = null;
         T t=null;
@@ -33,6 +40,13 @@ public class RedisService {
         return t;
     }
 
+    /*
+     * description: 获取单个对象，有防重额外的前缀
+     * author:niepu
+     * param: [prefix, key, clazz]
+     * date: 2018-10-04 18:33:42
+     * return: T
+     **/
     // redis的key防重的get方法
     public <T> T get(KeyPrefix prefix,String key,Class<T> clazz){
         Jedis jedis = null;
@@ -49,6 +63,7 @@ public class RedisService {
         return t;
     }
 
+    // 设置对象：没有防重前缀
     public <T> boolean set(String key,T value){
         Jedis jedis = null;
         try{
@@ -97,6 +112,29 @@ public class RedisService {
             // 生成真正的key
             String realKey=prefix.getPrefix()+key;
             return jedis.exists(realKey);
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+
+    public <T> Long incr(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            // 生成真正的key
+            String realKey=prefix.getPrefix()+key;
+            return jedis.incr(realKey);
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+    public <T> Long decr(KeyPrefix prefix,String key){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            // 生成真正的key
+            String realKey=prefix.getPrefix()+key;
+            return jedis.decr(realKey);
         }finally {
             returnToPool(jedis);
         }
