@@ -74,7 +74,15 @@ public class RedisService {
             }
             // 生成真正的key
             String realKey=prefix.getPrefix()+key;
-            jedis.set(realKey,str);
+            // set方法中设置过期时间
+            int seconds=prefix.expireSeconds();
+            if(seconds<=0){
+                jedis.set(realKey,str);
+            }else{
+                // 过期时间；
+                jedis.setex(realKey,seconds,str);
+            }
+
             return true;
         }finally {
             returnToPool(jedis);
