@@ -24,7 +24,7 @@ public class RedisService {
         try{
             jedis=jedisPool.getResource();
             // 设置密码
-//            jedis.auth("12345");
+            //  jedis.auth("12345");
             String str = jedis.get(key);
             t = stringToBean(str,clazz);
         }finally {
@@ -32,17 +32,49 @@ public class RedisService {
         }
         return t;
     }
+
+    // redis的key防重的get方法
+    public <T> T get(KeyPrefix prefix,String key,Class<T> clazz){
+        Jedis jedis = null;
+        T t=null;
+        try{
+            jedis=jedisPool.getResource();
+            // 生成真正的key
+            String realKey=prefix.getPrefix()+key;
+            String str = jedis.get(realKey);
+            t = stringToBean(str,clazz);
+        }finally {
+            returnToPool(jedis);
+        }
+        return t;
+    }
+
     public <T> boolean set(String key,T value){
         Jedis jedis = null;
         try{
             jedis=jedisPool.getResource();
-            // 设置密码
-//            jedis.auth("12345");
             String str = beanToString(value);
             if(str==null || str.length()<=0){
                 return false;
             }
             jedis.set(key,str);
+            return true;
+        }finally {
+            returnToPool(jedis);
+        }
+    }
+    // redis的key防重的set方法
+    public <T> boolean set(KeyPrefix prefix,String key,T value){
+        Jedis jedis = null;
+        try{
+            jedis=jedisPool.getResource();
+            String str = beanToString(value);
+            if(str==null || str.length()<=0){
+                return false;
+            }
+            // 生成真正的key
+            String realKey=prefix.getPrefix()+key;
+            jedis.set(realKey,str);
             return true;
         }finally {
             returnToPool(jedis);
