@@ -65,7 +65,10 @@ public class MiaoshaUserService {
 
         // 生成cookie，随机的uuid字符串就好了;这个token需要传递到客户端；但是这个uuid属于哪个用户呢？
         // 因此，需要将用户信息写入到redis中；引入redisService，核心就是将用户信息放入到第三方缓存中
-        addCookie(response,miaoshaUser);
+        // 代码修改，之前每次都生成新的uuid，导致每次请求就产生一耳光uuid，这些uuid都是同一个用户的
+        // 浪费redis空间，修改，一个用户只生成一个uuid，后面将这个uuid当做参数传递就好了
+        String token = UUIDUtil.uuid();
+        addCookie(response,token,miaoshaUser);
         return true;
     }
     // public 方法首先第一步是要进行参数校验的，养成习惯
@@ -76,14 +79,13 @@ public class MiaoshaUserService {
         MiaoshaUser user =redisService.get(MiaoshaUserKey.token,token,MiaoshaUser.class);
         // 延长有效期!!!只需要覆盖之前的expireSeconds就好了
         if(user!=null){
-            addCookie(response,user);
+            addCookie(response,token,user);
         }
         return user;
     }
 
     // 实现cookie的有效期是最后一次访问的时间加上30min
-    public void addCookie(HttpServletResponse response,MiaoshaUser miaoshaUser){
-        String token = UUIDUtil.uuid();
+    public void addCookie(HttpServletResponse response,String token,MiaoshaUser miaoshaUser){
         // 第三个参数是用户信息
         redisService.set(MiaoshaUserKey.token,token,miaoshaUser);
         Cookie cookie= new Cookie(COOKIE_NAME_TOKEN,token);
