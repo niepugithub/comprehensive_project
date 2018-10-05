@@ -57,9 +57,11 @@ public class GoodsController {
 
         if(now<startAt){//还没开始，倒计时
             miaoshaStatus=0;
-            remainSeconds=(int)(startAt-now)/1000;
+            // 这里int强转需要注意后面的数据全部放入到小括号中，否则得到的竟然是个负数
+            remainSeconds=(int)((startAt-now)/1000);
         }else if(now>endAt){// 秒杀已经结束
             remainSeconds=-1;
+            miaoshaStatus=2;
         }else {
             miaoshaStatus=1;
             remainSeconds=0;
@@ -68,6 +70,5 @@ public class GoodsController {
         model.addAttribute("miaoshaStatus",miaoshaStatus);
         return "goods_detail";
     }
-
 
 }
