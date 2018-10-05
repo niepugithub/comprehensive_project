@@ -7,6 +7,17 @@ public class CodeMsg {
 	//通用异常
 	public static CodeMsg SUCCESS = new CodeMsg(0, "success");
 	public static CodeMsg SERVER_ERROR = new CodeMsg(500100, "服务端异常");
+	// 参数绑定异常带了一个参数，需要定义一个方法，填充参数
+	public static CodeMsg Bind_ERROR = new CodeMsg(500101, "参数绑定异常：%s");
+
+	public CodeMsg fillArgs(Object... args){
+		int code=this.code;
+		// msg需要做填充处理
+		String msg=String.format(this.msg,args);
+		return new CodeMsg(code,msg);
+	}
+
+
 	//登录模块 5002XX
 	public static CodeMsg SESSION_ERROR = new CodeMsg(500210, "session不存在或者已经失效");
 	public static CodeMsg PASSWORD_EMPTY = new CodeMsg(500211, "密码不能为空");

@@ -86,6 +86,7 @@
                 password: password
             },
             success: function (data) {
+                console.debug(data);
                 // 关闭窗口
                 layer.closeAll();
                 if (data.code == 0) {
