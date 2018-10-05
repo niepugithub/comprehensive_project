@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.util.StringUtils;
 
+import javax.validation.Valid;
+
 /**
  * @description:
  * @author:niepu
@@ -34,20 +36,20 @@ public class LoginController {
     // 注意，只要不是返回页面字符串，一般需要加上@ResponseBody注解
     @RequestMapping("/do_login")
     @ResponseBody
-    public Result<Boolean> doLogin(LoginVo loginVo){
+    public Result<Boolean> doLogin(@Valid LoginVo loginVo){
         logger.info(loginVo.toString());
-        // 参数校验
-        String passInput=loginVo.getPassword();
-        String mobile=loginVo.getMobile();
-        if(StringUtils.isEmpty(passInput)){
-            return Result.error(CodeMsg.PASSWORD_EMPTY);
-        }
-        if(StringUtils.isEmpty(mobile)){
-            return Result.error(CodeMsg.MOBILE_EMPTY);
-        }
-        if(!ValidatorUtil.isMobile(mobile)){
-            return Result.error(CodeMsg.MOBILE_ERROR);
-        }
+        // 参数校验，使用注解校验了！！！
+//        String passInput=loginVo.getPassword();
+//        String mobile=loginVo.getMobile();
+//        if(StringUtils.isEmpty(passInput)){
+//            return Result.error(CodeMsg.PASSWORD_EMPTY);
+//        }
+//        if(StringUtils.isEmpty(mobile)){
+//            return Result.error(CodeMsg.MOBILE_EMPTY);
+//        }
+//        if(!ValidatorUtil.isMobile(mobile)){
+//            return Result.error(CodeMsg.MOBILE_ERROR);
+//        }
         // 登录
         CodeMsg cm=userService.login(loginVo);
         if(cm.getCode()==0){
