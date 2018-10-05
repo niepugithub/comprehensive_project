@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 /**
@@ -36,7 +37,7 @@ public class LoginController {
     // 注意，只要不是返回页面字符串，一般需要加上@ResponseBody注解
     @RequestMapping("/do_login")
     @ResponseBody
-    public Result<Boolean> doLogin(@Valid LoginVo loginVo){
+    public Result<Boolean> doLogin(HttpServletResponse response,@Valid LoginVo loginVo){
         logger.info(loginVo.toString());
         // 参数校验，使用注解校验了！！！
 //        String passInput=loginVo.getPassword();
@@ -58,6 +59,6 @@ public class LoginController {
 //            return Result.error(cm);
 //        }
         // userService.login(loginVo)这个方法要么返回true，要么抛异常
-        return Result.success(userService.login(loginVo));
+        return Result.success(userService.login(response,loginVo));
     }
 }
