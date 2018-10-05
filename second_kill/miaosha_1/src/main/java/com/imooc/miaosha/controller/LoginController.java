@@ -50,12 +50,14 @@ public class LoginController {
 //        if(!ValidatorUtil.isMobile(mobile)){
 //            return Result.error(CodeMsg.MOBILE_ERROR);
 //        }
-        // 登录
-        CodeMsg cm=userService.login(loginVo);
-        if(cm.getCode()==0){
-            return Result.success(true);
-        }else{
-            return Result.error(cm);
-        }
+        // 登录，有了全局异常，就不需要低下这么写了
+//        CodeMsg cm=userService.login(loginVo);
+//        if(cm.getCode()==0){
+//            return Result.success(true);
+//        }else{
+//            return Result.error(cm);
+//        }
+        // userService.login(loginVo)这个方法要么返回true，要么抛异常
+        return Result.success(userService.login(loginVo));
     }
 }

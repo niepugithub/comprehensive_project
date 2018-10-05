@@ -1,6 +1,5 @@
 package com.imooc.miaosha.exception;
 
-import com.alibaba.druid.sql.visitor.functions.Bin;
 import com.imooc.miaosha.result.CodeMsg;
 import com.imooc.miaosha.result.Result;
 import org.springframework.validation.BindException;
@@ -24,7 +23,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public Result<String> exceptionHandler(HttpServletRequest req,Exception e){
-        if(e instanceof BindException){
+        if(e instanceof GlobalException){// 如果是自定义全局异常
+            GlobalException ex = (GlobalException)e;
+            return Result.error(ex.getCodeMsg());
+        }else if(e instanceof BindException){
             BindException ex = (BindException)e;
             List<ObjectError> errorList=ex.getAllErrors();
             // 这里只处理第一个error示范下， 具体可以处理所有error
