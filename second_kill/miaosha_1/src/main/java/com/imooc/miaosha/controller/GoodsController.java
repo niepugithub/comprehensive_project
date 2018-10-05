@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.servlet.http.HttpServletResponse;
@@ -42,6 +39,34 @@ public class GoodsController {
         List<GoodsVo> goodsVos=goodsService.listGoodsVo();
         model.addAttribute("goodsVos",goodsVos);
         return "goods_list";
+    }
+
+    @RequestMapping("/to_detail/{goodsId}")
+    public String toLogin(Model model, MiaoshaUser miaoshaUser, @PathVariable("goodsId") int id){
+        model.addAttribute("user",miaoshaUser);
+        // 查询商品列表
+        GoodsVo goods=goodsService.getGoodsVoById(id);
+        model.addAttribute("goods",goods);
+
+        int remainSeconds=0;
+        int miaoshaStatus=2;// 0还没开始，1正在进行，2已经结束
+
+        long startAt=goods.getStartDate().getTime();
+        long endAt=goods.getEndDate().getTime();
+        long now=System.currentTimeMillis();
+
+        if(now<startAt){//还没开始，倒计时
+            miaoshaStatus=0;
+            remainSeconds=(int)(startAt-now)/1000;
+        }else if(now>endAt){// 秒杀已经结束
+            remainSeconds=-1;
+        }else {
+            miaoshaStatus=1;
+            remainSeconds=0;
+        }
+        model.addAttribute("remainSeconds",remainSeconds);
+        model.addAttribute("miaoshaStatus",miaoshaStatus);
+        return "goods_detail";
     }
 
 
