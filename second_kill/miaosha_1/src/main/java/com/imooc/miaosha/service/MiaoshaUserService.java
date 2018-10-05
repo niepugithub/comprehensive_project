@@ -65,6 +65,24 @@ public class MiaoshaUserService {
 
         // 生成cookie，随机的uuid字符串就好了;这个token需要传递到客户端；但是这个uuid属于哪个用户呢？
         // 因此，需要将用户信息写入到redis中；引入redisService，核心就是将用户信息放入到第三方缓存中
+        addCookie(response,miaoshaUser);
+        return true;
+    }
+    // public 方法首先第一步是要进行参数校验的，养成习惯
+    public MiaoshaUser getByToken(HttpServletResponse response,String token) {
+        if(StringUtils.isEmpty(token)){
+            return null;
+        }
+        MiaoshaUser user =redisService.get(MiaoshaUserKey.token,token,MiaoshaUser.class);
+        // 延长有效期!!!只需要覆盖之前的expireSeconds就好了
+        if(user!=null){
+            addCookie(response,user);
+        }
+        return user;
+    }
+
+    // 实现cookie的有效期是最后一次访问的时间加上30min
+    public void addCookie(HttpServletResponse response,MiaoshaUser miaoshaUser){
         String token = UUIDUtil.uuid();
         // 第三个参数是用户信息
         redisService.set(MiaoshaUserKey.token,token,miaoshaUser);
@@ -76,14 +94,5 @@ public class MiaoshaUserService {
         response.addCookie(cookie);
         // 可以看到do_login uri的response headers中有cookie头
         // Set-Cookie:token=7c519f3cf9184beb82c00ef515427e70; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/
-        return true;
-    }
-    // public 方法首先第一步是要进行参数校验的，养成习惯
-    public MiaoshaUser getByToken(String token) {
-        if(StringUtils.isEmpty(token)){
-            return null;
-        }
-        MiaoshaUser user =redisService.get(MiaoshaUserKey.token,token,MiaoshaUser.class);
-        return user;
     }
 }

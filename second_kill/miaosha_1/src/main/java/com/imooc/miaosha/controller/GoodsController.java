@@ -32,7 +32,7 @@ public class GoodsController {
     MiaoshaUserService userService;
     private Logger logger= LoggerFactory.getLogger(GoodsController.class);
     @RequestMapping("/to_list")
-    public String toLogin(Model model,
+    public String toLogin(Model model,HttpServletResponse response,
            @CookieValue(value = MiaoshaUserService.COOKIE_NAME_TOKEN,required = false)String cookieToken,
            @RequestParam(value = MiaoshaUserService.COOKIE_NAME_TOKEN,required = false)String paramToken){
         // token可能通过cookie传参，也可能参数传递
@@ -42,7 +42,7 @@ public class GoodsController {
         // 参数token的优先级更高
         String token=StringUtils.isEmpty(paramToken)?cookieToken:paramToken;
         // 拿到token之后，可以从redis中取出用户信息啦！！
-        MiaoshaUser user=userService.getByToken(token);
+        MiaoshaUser user=userService.getByToken(response,token);
         model.addAttribute("user",user);
         return "goods_list";
     }
