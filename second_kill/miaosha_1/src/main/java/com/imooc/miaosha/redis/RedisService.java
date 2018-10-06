@@ -140,7 +140,7 @@ public class RedisService {
         }
     }
 
-    private <T> String beanToString(T value) {
+    public static <T> String beanToString(T value) {
         // 如果value不是字符串而是int咋办？需要校验判断
         if(value==null){
             return null;
@@ -157,7 +157,7 @@ public class RedisService {
         }
     }
 
-    private <T> T stringToBean(String str,Class<T> clazz) {
+    public static <T> T stringToBean(String str,Class<T> clazz) {
         if(str==null || str.length()<=0){
             return null;
         }

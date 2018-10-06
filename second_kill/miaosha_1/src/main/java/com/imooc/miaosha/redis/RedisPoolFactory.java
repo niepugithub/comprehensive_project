@@ -19,7 +19,6 @@ public class RedisPoolFactory {
     @Bean
     public JedisPool jedisPoolFactory(){
         JedisPoolConfig poolConfig = new JedisPoolConfig();
-        System.out.println(redisConfig+"==============");
         poolConfig.setMaxIdle(redisConfig.getPoolMaxIdle());
         poolConfig.setMaxTotal(redisConfig.getPoolMaxTotal());
         // 秒与毫秒之间的转化需要注意

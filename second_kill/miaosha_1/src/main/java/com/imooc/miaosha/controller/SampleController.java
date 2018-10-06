@@ -1,6 +1,8 @@
 package com.imooc.miaosha.controller;
 
+import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.domain.User;
+import com.imooc.miaosha.rabbitmq.MQSender;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.redis.UserKey;
 import com.imooc.miaosha.result.Result;
@@ -24,6 +26,9 @@ public class SampleController {
 
     @Autowired
     private RedisService redisService;
+
+    @Autowired
+    MQSender mqSender;
 
     // 没有防重前缀的key
     @RequestMapping("/redis/get")
@@ -53,6 +58,30 @@ public class SampleController {
     @ResponseBody
     public Result<User> redisGetUser(){
         User user=redisService.get(UserKey.getByName,"k3",User.class);
+        return Result.success(user);
+    }
+
+    @RequestMapping("/rabbit")
+    @ResponseBody
+    public Result<MiaoshaUser> testRabbit(){
+        MiaoshaUser user=redisService.get(UserKey.getById,"18297850973",MiaoshaUser.class);
+        mqSender.sendMsg(user);
+        return Result.success(user);
+    }
+
+    @RequestMapping("/rabbit/topic")
+    @ResponseBody
+    public Result<MiaoshaUser> testRabbitTopic(){
+        MiaoshaUser user=redisService.get(UserKey.getById,"18297850973",MiaoshaUser.class);
+        mqSender.sendMsg(user);
+        mqSender.sendTopic(user);
+        return Result.success(user);
+    }
+    @RequestMapping("/rabbit/fanout")
+    @ResponseBody
+    public Result<MiaoshaUser> testRabbitFanout(){
+        MiaoshaUser user=redisService.get(UserKey.getById,"18297850973",MiaoshaUser.class);
+        mqSender.sendFanout(user);
         return Result.success(user);
     }
 }
