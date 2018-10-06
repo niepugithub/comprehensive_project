@@ -5,6 +5,7 @@ import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.exception.GlobalException;
 import com.imooc.miaosha.redis.MiaoshaUserKey;
 import com.imooc.miaosha.redis.RedisService;
+import com.imooc.miaosha.redis.UserKey;
 import com.imooc.miaosha.result.CodeMsg;
 import com.imooc.miaosha.util.MD5Util;
 import com.imooc.miaosha.util.UUIDUtil;
@@ -28,12 +29,43 @@ public class MiaoshaUserService {
 
     @Autowired
     MiaoshaUserDao miaoshaUserDao;
-
+    // 调用别人的service，不能调用别人的dao，因为别人的service可能用到了缓存，如果直接调用别人的dao
+    // 那么缓存就没用到了，可能会出现数据一致性问题
     @Autowired
     RedisService redisService;
     public MiaoshaUser getById(Long id){
-        return miaoshaUserDao.getById(id);
+        MiaoshaUser user=redisService.get(UserKey.getById,id+"",MiaoshaUser.class);
+        if(user!=null){
+            return user;
+        }
+        user = miaoshaUserDao.getById(id);
+        if(user!=null){
+            redisService.set(UserKey.getById,id+"",user);
+        }
+        return user;
     }
+
+    public boolean updatePassword(String token, long id, String formPass) {
+        // 取user
+        MiaoshaUser user=getById(id);
+        if(user==null){
+            throw new GlobalException(CodeMsg.MOBILE_NOT_EXIST);
+        }
+        // 更新数据库；创建新的对象，因为只更新密码字段，没必要用user，去更新所有字段
+        MiaoshaUser toBeUpdate=new MiaoshaUser();
+        toBeUpdate.setId(id);
+        toBeUpdate.setPassword(MD5Util.formPassDBPass(formPass, user.getSalt()));
+        miaoshaUserDao.update(toBeUpdate);
+        //处理缓存
+        redisService.delete(MiaoshaUserKey.getById, ""+id);
+        user.setPassword(toBeUpdate.getPassword());
+        // 更新token这个key对应的值；如果是一般数据，是应该让缓存失效，删除这个缓存
+        // 由于缓存的是登录用户信息，永久有效的，而且只是登录的时候才赋值，如果删除了，
+        // 用户就只能重新登录了；好像也有道理啊，修改密码后，重新登录!!!
+        redisService.set(MiaoshaUserKey.token, token, user);
+        return true;
+    }
+
     // 之前是返回CodeMsg.success，现在是返回业务需要的bool类型
     public boolean login(HttpServletResponse response,LoginVo loginVo){
         if(loginVo==null){
@@ -65,7 +97,7 @@ public class MiaoshaUserService {
 
         // 生成cookie，随机的uuid字符串就好了;这个token需要传递到客户端；但是这个uuid属于哪个用户呢？
         // 因此，需要将用户信息写入到redis中；引入redisService，核心就是将用户信息放入到第三方缓存中
-        // 代码修改，之前每次都生成新的uuid，导致每次请求就产生一耳光uuid，这些uuid都是同一个用户的
+        // 代码修改，之前每次都生成新的uuid，导致每次请求就产生一新uuid，这些uuid都是同一个用户的
         // 浪费redis空间，修改，一个用户只生成一个uuid，后面将这个uuid当做参数传递就好了
         String token = UUIDUtil.uuid();
         addCookie(response,token,miaoshaUser);

@@ -178,6 +178,19 @@ public class RedisService {
             jedis.close();
         }
     }
+
+    public boolean delete(MiaoshaUserKey getById, String s) {
+        Jedis jedis=null;
+        try{
+            jedis=jedisPool.getResource();
+            // 生成realKey
+            String realKey=getById.getPrefix()+s;
+            long ret=jedis.del(realKey);
+            return ret > 0;
+        }finally {
+            returnToPool(jedis);
+        }
+    }
 }
 
 
