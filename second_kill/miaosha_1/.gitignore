@@ -27,4 +27,5 @@
 /.nb-gradle/
 
 ### add by niepu ###
+.idea/ workspace.xml
 
