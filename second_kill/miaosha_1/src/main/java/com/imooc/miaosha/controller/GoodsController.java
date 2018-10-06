@@ -6,6 +6,7 @@ import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.GoodsService;
 import com.imooc.miaosha.service.MiaoshaUserService;
+import com.imooc.miaosha.vo.GoodsDetailVo;
 import com.imooc.miaosha.vo.GoodsVo;
 import com.imooc.miaosha.vo.LoginVo;
 import org.codehaus.groovy.util.StringUtil;
@@ -67,7 +68,7 @@ public class GoodsController {
         return html;
     }
 
-
+    // 页面缓存
     @RequestMapping(value="/to_detail/{goodsId}",produces = "text/html")
     @ResponseBody
     public String detail(HttpServletRequest request, HttpServletResponse response,Model model, MiaoshaUser miaoshaUser, @PathVariable("goodsId") int id){
@@ -108,6 +109,36 @@ public class GoodsController {
             redisService.set(GoodsKey.getGoodsDetail, ""+id, html);
         }
         return html;
+    }
+    // 页面静态化，只需要调用这个接口返回客户端需要的数据就好了
+    @RequestMapping(value="/detail/{goodsId}")
+    @ResponseBody
+    public Result<GoodsDetailVo> detailStatic(MiaoshaUser miaoshaUser, @PathVariable("goodsId") int id){
+        // 查询商品列表
+        GoodsVo goods=goodsService.getGoodsVoById(id);
+        int remainSeconds=0;
+        int miaoshaStatus=2;// 0还没开始，1正在进行，2已经结束
+        long startAt=goods.getStartDate().getTime();
+        long endAt=goods.getEndDate().getTime();
+        long now=System.currentTimeMillis();
+
+        if(now<startAt){//还没开始，倒计时
+            miaoshaStatus=0;
+            // 这里int强转需要注意后面的数据全部放入到小括号中，否则得到的竟然是个负数
+            remainSeconds=(int)((startAt-now)/1000);
+        }else if(now>endAt){// 秒杀已经结束
+            remainSeconds=-1;
+            miaoshaStatus=2;
+        }else {
+            miaoshaStatus=1;
+            remainSeconds=0;
+        }
+        GoodsDetailVo vo = new GoodsDetailVo();
+        vo.setGoods(goods);
+        vo.setUser(miaoshaUser);
+        vo.setRemainSeconds(remainSeconds);
+        vo.setMiaoshaStatus(miaoshaStatus);
+        return Result.success(vo);
     }
 
 }

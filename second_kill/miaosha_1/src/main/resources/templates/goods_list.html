@@ -37,7 +37,9 @@
             <td th:text="${goodsVo.goodsPrice}"></td>
             <td th:text="${goodsVo.miaoshaPrice}">O</td>
             <td th:text="${goodsVo.stockCount}"></td>
-            <td><a th:href="'/goods/to_detail/'+${goodsVo.id}">详情</a></td>
+            <td><a th:href="'/goods_detail.htm?goodsId='+${goodsVo.id}">详情</a></td>
+            <!--之前这里是访问后台获取数据，现在是直接跳转到静态static页面上了-->
+            <!--<td><a th:href="'/goods/to_detail/'+${goodsVo.id}">详情</a></td>-->
         </tr>
     </table>
 </div>
