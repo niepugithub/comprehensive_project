@@ -1,6 +1,8 @@
 package com.imooc.miaosha.controller;
 
 import com.imooc.miaosha.domain.MiaoshaUser;
+import com.imooc.miaosha.redis.GoodsKey;
+import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.GoodsService;
 import com.imooc.miaosha.service.MiaoshaUserService;
@@ -10,11 +12,15 @@ import org.codehaus.groovy.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.spring4.context.SpringWebContext;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
@@ -32,17 +38,43 @@ public class GoodsController {
     GoodsService goodsService;
     @Autowired
     MiaoshaUserService userService;
+    @Autowired
+    RedisService redisService;
+    @Autowired
+    ThymeleafViewResolver thymeleafViewResolver;
+    @Autowired
+    ApplicationContext applcationContext;
     private Logger logger= LoggerFactory.getLogger(GoodsController.class);
-    @RequestMapping("/to_list")
-    public String toLogin(Model model){
+    @RequestMapping(value = "/to_list",produces = "text/html")
+    @ResponseBody
+    public String list(HttpServletRequest request, HttpServletResponse response, Model model){
+        //取缓存，这里的第二个参数没有写，粒度比较大，这里查看所有，没有参数，
+        // 如果有参数，可以考虑加参数，变成url级别的缓存
+        String html = redisService.get(GoodsKey.getGoodsList, "", String.class);
+        if(!StringUtils.isEmpty(html)) {
+            return html;
+        }
         // 查询商品列表
         List<GoodsVo> goodsVos=goodsService.listGoodsVo();
         model.addAttribute("goodsVos",goodsVos);
-        return "goods_list";
+        //手动渲染页面
+        SpringWebContext ctx=new SpringWebContext(request,response,request.getServletContext(),
+                request.getLocale(),model.asMap(),applcationContext);
+        html=thymeleafViewResolver.getTemplateEngine().process("goods_list",ctx);
+        if(!StringUtils.isEmpty(html)) {
+            redisService.set(GoodsKey.getGoodsList, "", html);
+        }
+        return html;
     }
 
-    @RequestMapping("/to_detail/{goodsId}")
-    public String toLogin(Model model, MiaoshaUser miaoshaUser, @PathVariable("goodsId") int id){
+
+    @RequestMapping(value="/to_detail/{goodsId}",produces = "text/html")
+    @ResponseBody
+    public String detail(HttpServletRequest request, HttpServletResponse response,Model model, MiaoshaUser miaoshaUser, @PathVariable("goodsId") int id){
+        String html = redisService.get(GoodsKey.getGoodsDetail, ""+id, String.class);
+        if(!StringUtils.isEmpty(html)) {
+            return html;
+        }
         model.addAttribute("user",miaoshaUser);
         // 查询商品列表
         GoodsVo goods=goodsService.getGoodsVoById(id);
@@ -68,7 +100,14 @@ public class GoodsController {
         }
         model.addAttribute("remainSeconds",remainSeconds);
         model.addAttribute("miaoshaStatus",miaoshaStatus);
-        return "goods_detail";
+        //手动渲染页面
+        SpringWebContext ctx=new SpringWebContext(request,response,request.getServletContext(),
+                request.getLocale(),model.asMap(),applcationContext);
+        html=thymeleafViewResolver.getTemplateEngine().process("goods_detail",ctx);
+        if(!StringUtils.isEmpty(html)) {
+            redisService.set(GoodsKey.getGoodsDetail, ""+id, html);
+        }
+        return html;
     }
 
 }
