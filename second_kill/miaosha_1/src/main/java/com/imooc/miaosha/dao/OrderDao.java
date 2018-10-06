@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface OrderDao {
 
-    @Select("select * from miaosha_order where userId=#{userId} and goodsId=#{goodsId}")
+    @Select("select * from miaosha_order where user_id=#{userId} and goods_id=#{goodsId}")
     MiaoshaOrder getMiaoshaOrderByGoodsIdUserId(@Param("userId") long userId, @Param("goodsId") long goodsId);
 
     @Insert("insert into order_info " +

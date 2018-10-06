@@ -1,5 +1,6 @@
 package com.imooc.miaosha.controller;
 
+import com.imooc.miaosha.domain.MiaoshaOrder;
 import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.domain.OrderInfo;
 import com.imooc.miaosha.result.CodeMsg;
@@ -44,6 +45,11 @@ public class MiaoshaController {
             return "miaosha_fail";
         }
         // 判断是否已经秒杀到了，防止同一个用户秒杀多次
+        MiaoshaOrder order = orderService.getMiaoshaOrderByUserIdGoodsId(user.getId(), goodsId);
+        if(order != null) {
+            model.addAttribute("errmsg", CodeMsg.REPEATE_MIAOSHA.getMsg());
+            return "miaosha_fail";
+        }
         // 减库存，下订单，写入秒杀订单；秒杀成功，进入订单信息
         OrderInfo orderInfo = miaoshaService.miaosha(user,goodsVo);
         model.addAttribute("orderInfo",orderInfo);

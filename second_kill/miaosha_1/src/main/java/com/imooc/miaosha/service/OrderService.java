@@ -24,10 +24,9 @@ import java.util.List;
 public class OrderService {
     @Autowired
     OrderDao orderDao;
-    public MiaoshaOrder getMiaoshaOrderByGoodsIdUserId(long userId,long goodsId){
+    public MiaoshaOrder getMiaoshaOrderByUserIdGoodsId(long userId,long goodsId){
         return orderDao.getMiaoshaOrderByGoodsIdUserId(userId,goodsId);
     }
-
     @Transactional
     public OrderInfo createOrder(MiaoshaUser user, GoodsVo goodsVo) {
         OrderInfo orderInfo=new OrderInfo();
@@ -48,4 +47,6 @@ public class OrderService {
         orderDao.insertMiaoshaOrder(miaoshaOrder);
         return orderInfo;
     }
+
+
 }
