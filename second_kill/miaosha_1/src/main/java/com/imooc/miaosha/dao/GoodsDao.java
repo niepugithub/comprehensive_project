@@ -25,5 +25,5 @@ public interface GoodsDao {
     GoodsVo getGoodsVoById(@Param("goodsId") int id);
     // goodsId是goods对象的一个属性，这么写也是可以传递参数的！！！
     @Update("update miaosha_goods set stock_count=stock_count-1 where goods_id=#{goodsId}")
-    void reduceStock(MiaoshaGoods goods);
+    int reduceStock(MiaoshaGoods goods);
 }

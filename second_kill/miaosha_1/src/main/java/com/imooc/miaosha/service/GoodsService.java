@@ -34,4 +34,8 @@ public class GoodsService {
          g.setStockCount(goodsVo.getStockCount()-1);
         goodsDao.reduceStock(g);
     }
+
+    public GoodsVo getGoodsVoByGoodsId(long goodsId) {
+        return goodsDao.getGoodsVoById((int)goodsId);
+    }
 }
