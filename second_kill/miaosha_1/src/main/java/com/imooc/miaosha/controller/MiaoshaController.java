@@ -25,6 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -166,6 +171,26 @@ public class MiaoshaController implements InitializingBean{
         }
         String path = miaoshaService.createPath(user,goodsId);
         return Result.success(path);
+    }
+    @RequestMapping(value = "/verifyCode",method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> getVerifyCode(HttpServletResponse response,MiaoshaUser user, int goodsId) {
+        if (user == null) {// 没有登录，去登录页面
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        BufferedImage image = miaoshaService.createMiaoshaVerify(user,goodsId);
+        // 将图片返回到客户端
+        OutputStream outputStream=null;
+        try {
+            outputStream=response.getOutputStream();
+            ImageIO.write(image,"JPEG",outputStream);
+            outputStream.flush();
+            outputStream.close();
+            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return Result.error(CodeMsg.MIAOSHA_FAIL);
+        }
     }
 }
 

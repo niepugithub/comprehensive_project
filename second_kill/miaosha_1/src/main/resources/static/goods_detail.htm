@@ -48,8 +48,15 @@
                         <button class="btn btn-primary btn-block" type="submit" id="buyButton">立即秒杀</button>
                         <input type="hidden" name="goodsId"  id="goodsId" />
                     </form>-->
-                <button class="btn btn-primary btn-block" type="button" id="buyButton" onclick="getMiaoshaPath()">立即秒杀
-                </button>
+                <!--验证码和输入框横排-->
+                <div class="row">
+                    <div class="form-inline">
+                        <img id="verifyCodeImg" width="80" height="32" style="display: none">
+                        <input id="verifyCode" class="form-control" style="display: none">
+                        <button class="btn btn-primary" type="button" id="buyButton" onclick="getMiaoshaPath()">立即秒杀
+                        </button>
+                    </div>
+                </div>
                 <input type="hidden" name="goodsId" id="goodsId"/>
             </td>
         </tr>
@@ -211,9 +218,15 @@
                 clearTimeout(timeout);
             }
             $("#miaoshaTip").html("秒杀进行中");
+            // 秒杀进行的时候加上图形验证码
+            $("#verifyCodeImg").attr("src","/miaosha/verifyCode?goodsId="+$("#goodsId").val());
+            $("#verifyCodeImg").show();
+            $("#verifyCode").show();
         } else {//秒杀已经结束
             $("#buyButton").attr("disabled", true);
             $("#miaoshaTip").html("秒杀已经结束");
+            $("#verifyCodeImg").hide();
+            $("#verifyCode").hide();
         }
     }
 

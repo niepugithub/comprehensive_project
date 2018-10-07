@@ -35,6 +35,7 @@ public class CodeMsg {
 	//秒杀模块 5005XX
 	public static CodeMsg MIAO_SHA_OVER = new CodeMsg(500501, "秒杀结束");
 	public static CodeMsg REPEATE_MIAOSHA = new CodeMsg(500502, "重复秒杀");
+	public static CodeMsg MIAOSHA_FAIL = new CodeMsg(500503, "秒杀失败");
 
 	private CodeMsg(int code, String msg) {
 		this.code = code;
