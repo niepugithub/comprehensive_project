@@ -48,7 +48,7 @@
                         <button class="btn btn-primary btn-block" type="submit" id="buyButton">立即秒杀</button>
                         <input type="hidden" name="goodsId"  id="goodsId" />
                     </form>-->
-                <button class="btn btn-primary btn-block" type="button" id="buyButton" onclick="doMiaosha()">立即秒杀
+                <button class="btn btn-primary btn-block" type="button" id="buyButton" onclick="getMiaoshaPath()">立即秒杀
                 </button>
                 <input type="hidden" name="goodsId" id="goodsId"/>
             </td>
@@ -106,11 +106,33 @@
             }
         });
     }
+    // 隐藏秒杀地址：获取秒杀地址
+    function getMiaoshaPath() {
+        var goodsIs=$("#goodsId").val();
+        $.ajax({
+            url: "/miaosha/path",
+            type: "GET",
+            data: {
+                goodsId: $("#goodsId").val(),
+            },
+            success: function (data) {
+                if (data.code == 0) {
+                    var path = data.data;
+                   doMiaosha(path);
+                } else {
+                    layer.msg(data.msg);
+                }
+            },
+            error: function () {
+                layer.msg("客户端请求有误");
+            }
+        });
+    }
 
     // 秒杀静态化；不在是form表单提交请求了，而是使用ajax请求；
-    function doMiaosha() {
+    function doMiaosha(path) {
         $.ajax({
-            url: "/miaosha/miaosha",
+            url: "/miaosha/"+path+"/miaosha",
             type: "POST",
             data: {
                 goodsId: $("#goodsId").val(),

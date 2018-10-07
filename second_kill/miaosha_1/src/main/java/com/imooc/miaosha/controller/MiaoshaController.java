@@ -6,17 +6,21 @@ import com.imooc.miaosha.domain.OrderInfo;
 import com.imooc.miaosha.rabbitmq.MQSender;
 import com.imooc.miaosha.rabbitmq.MiaoshaMessage;
 import com.imooc.miaosha.redis.GoodsKey;
+import com.imooc.miaosha.redis.MiaoshaKey;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.result.CodeMsg;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.GoodsService;
 import com.imooc.miaosha.service.MiaoshaService;
 import com.imooc.miaosha.service.OrderService;
+import com.imooc.miaosha.util.MD5Util;
+import com.imooc.miaosha.util.UUIDUtil;
 import com.imooc.miaosha.vo.GoodsVo;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -82,11 +86,17 @@ public class MiaoshaController implements InitializingBean{
     }
 
     // 上面返回页面：这里由于商品详情页是静态化的，ajax提交请求，写跳转页面没有用
-    @RequestMapping("/miaosha")
+    // 隐藏秒杀地址
+    @RequestMapping("/{path}/miaosha")
     @ResponseBody
-    public Result<Integer> doMiaoshaStatic(MiaoshaUser user, Model model,long goodsId){
+    public Result<Integer> doMiaoshaStatic(MiaoshaUser user,@PathVariable("path")String path, long goodsId){
         if(user==null){// 没有登录，去登录页面
             return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        // 验证path
+        boolean check = miaoshaService.checkPath(user,goodsId,path);
+        if(!check){
+            return Result.error(CodeMsg.REQUEST_IILEGAL);
         }
         //内存标记，减少redis访问
         boolean over = localOverMap.get(goodsId);
@@ -145,6 +155,17 @@ public class MiaoshaController implements InitializingBean{
         }
         long orderId = miaoshaService.getMiaoshaResult(user.getId(),goodsId);
         return Result.success(orderId);
+    }
+
+    @RequestMapping(value = "/path",method = RequestMethod.GET)
+    @ResponseBody
+    public Result<String> getMiaoshaPath(MiaoshaUser user, Model model,int goodsId) {
+        model.addAttribute("user", user);
+        if (user == null) {// 没有登录，去登录页面
+            return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        String path = miaoshaService.createPath(user,goodsId);
+        return Result.success(path);
     }
 }
 

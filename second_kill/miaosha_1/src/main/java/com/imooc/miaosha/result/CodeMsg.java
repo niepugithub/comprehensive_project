@@ -7,6 +7,7 @@ public class CodeMsg {
 	//通用异常
 	public static CodeMsg SUCCESS = new CodeMsg(0, "success");
 	public static CodeMsg SERVER_ERROR = new CodeMsg(500100, "服务端异常");
+	public static CodeMsg REQUEST_IILEGAL = new CodeMsg(500102, "非法请求");
 	// 参数绑定异常带了一个参数，需要定义一个方法，填充参数
 	public static CodeMsg Bind_ERROR = new CodeMsg(500101, "参数绑定异常：%s");
 

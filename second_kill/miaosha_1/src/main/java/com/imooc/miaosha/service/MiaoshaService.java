@@ -6,6 +6,8 @@ import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.domain.OrderInfo;
 import com.imooc.miaosha.redis.MiaoshaKey;
 import com.imooc.miaosha.redis.RedisService;
+import com.imooc.miaosha.util.MD5Util;
+import com.imooc.miaosha.util.UUIDUtil;
 import com.imooc.miaosha.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,5 +67,19 @@ public class MiaoshaService {
 
     public void setGoodsOver(long goodsId) {
         redisService.set(MiaoshaKey.isGoodsOver,goodsId+"",true);
+    }
+
+    public boolean checkPath(MiaoshaUser user, long goodsId, String path) {
+        if(user==null || path==null){
+            return false;
+        }
+        String pathOld= redisService.get(MiaoshaKey.getMiaoshaPath,user.getId()+"_"+goodsId,String.class);
+        return path.equals(pathOld);
+    }
+
+    public String createPath(MiaoshaUser user, int goodsId) {
+        String uuid= MD5Util.md5(UUIDUtil.uuid()+"123456");
+        redisService.set(MiaoshaKey.getMiaoshaPath,user.getId()+"_"+goodsId,uuid);
+        return uuid;
     }
 }
