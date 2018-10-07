@@ -1,5 +1,6 @@
 package com.imooc.miaosha.controller;
 
+import com.imooc.miaosha.access.AccessLimit;
 import com.imooc.miaosha.domain.MiaoshaOrder;
 import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.domain.OrderInfo;
@@ -161,6 +162,7 @@ public class MiaoshaController implements InitializingBean{
         return Result.success(orderId);
     }
 
+    @AccessLimit(seconds = 10,maxCount = 5,needLogin = true)
     @RequestMapping(value = "/path",method = RequestMethod.GET)
     @ResponseBody
     public Result<String> getMiaoshaPath(MiaoshaUser user, HttpServletRequest request, int goodsId,
@@ -169,18 +171,18 @@ public class MiaoshaController implements InitializingBean{
         if (user == null) {// 没有登录，去登录页面
             return Result.error(CodeMsg.SESSION_ERROR);
         }
-        // 查询访问次数
-        String uri = request.getRequestURI();
-        String key=uri+"_"+user.getId()+"_"+goodsId;
-        // 接口限流：5秒钟内只能访问5次
-        Integer accessCount = redisService.get(AccessKey.accessLimit,key,Integer.class);
-        if(accessCount==null){
-            redisService.set(AccessKey.accessLimit,key,1);
-        }else if(accessCount<5){
-            redisService.incr(AccessKey.accessLimit,key);
-        }else {
-            return Result.error(CodeMsg.ACCESS_LIMIT_REACHED);
-        }
+        // 查询访问次数，下面这种方式写死了，采用注解+拦截器方式
+//        String uri = request.getRequestURI();
+//        String key=uri+"_"+user.getId()+"_"+goodsId;
+//        // 接口限流：5秒钟内只能访问5次
+//        Integer accessCount = redisService.get(AccessKey.accessLimit,key,Integer.class);
+//        if(accessCount==null){
+//            redisService.set(AccessKey.accessLimit,key,1);
+//        }else if(accessCount<5){
+//            redisService.incr(AccessKey.accessLimit,key);
+//        }else {
+//            return Result.error(CodeMsg.ACCESS_LIMIT_REACHED);
+//        }
         // 验证前端传递过来的验证码是否正确
         boolean check=miaoshaService.checkVerifyCode(user,goodsId,verifyCode);
         if(!check){

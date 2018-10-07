@@ -1,5 +1,6 @@
 package com.imooc.miaosha.config;
 
+import com.imooc.miaosha.access.UserContext;
 import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.service.MiaoshaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,32 +37,8 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter methodParameter,
             ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest,
             WebDataBinderFactory webDataBinderFactory) throws Exception {
-        HttpServletRequest request=(HttpServletRequest)nativeWebRequest.getNativeRequest();
-        HttpServletResponse response=(HttpServletResponse)nativeWebRequest.getNativeResponse();
-
-        // token可能通过cookie传参，也可能参数传递
-        String paramToken=request.getParameter(MiaoshaUserService.COOKIE_NAME_TOKEN);
-        String cookieToken=getCookieVale(request,MiaoshaUserService.COOKIE_NAME_TOKEN);
-        if(StringUtils.isEmpty(cookieToken)&&StringUtils.isEmpty(paramToken)){
-            return null;
-        }
-        // 参数token的优先级更高
-        String token=StringUtils.isEmpty(paramToken)?cookieToken:paramToken;
-        // 拿到token之后，可以从redis中取出用户信息啦！！
-        MiaoshaUser user=userService.getByToken(response,token);
+        MiaoshaUser user = UserContext.getMiaoshaUser();
         return user;
     }
 
-    private String getCookieVale(HttpServletRequest request, String cookieToken) {
-        Cookie[] cookies=request.getCookies();
-        if(cookies==null || cookies.length<=0){
-            return null;
-        }
-        for(Cookie cookie:cookies){
-            if(cookie.getName().equals(cookieToken)){
-                return cookie.getValue();
-            }
-        }
-        return null;
-    }
 }

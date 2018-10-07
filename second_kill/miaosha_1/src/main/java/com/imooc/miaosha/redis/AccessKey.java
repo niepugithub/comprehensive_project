@@ -16,5 +16,7 @@ public class AccessKey extends BasePrefix{
     private AccessKey(int expireSeconds, String prefix) {
         super(expireSeconds, prefix);
     }
-    public static AccessKey accessLimit = new AccessKey(5, "access");
+    public static AccessKey withExpires(int expireSeconds){
+        return new AccessKey(expireSeconds, "access");
+    }
 }
