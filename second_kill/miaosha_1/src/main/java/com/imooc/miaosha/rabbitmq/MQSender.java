@@ -35,4 +35,10 @@ public class MQSender {
         // 这里虽然没有routingKey了，还是需要空字符串占位，否则消息发布不成功
         amqpTemplate.convertAndSend("fanout_exchange","",msg);
     }
+
+    public void sendMiaoshaMessage(MiaoshaMessage mm) {
+        String msg=RedisService.beanToString(mm);
+        log.info("send message:"+msg);
+        amqpTemplate.convertAndSend(MQConfig.MIAOSHA_QUEUE,msg);
+    }
 }

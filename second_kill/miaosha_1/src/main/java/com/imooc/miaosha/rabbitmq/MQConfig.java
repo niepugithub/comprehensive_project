@@ -18,6 +18,7 @@ public class MQConfig {
     public static final String TOPIC_EXCHANGE="topicExchange";
     public static final String ROUTING_KEY1="topic.key1";
     public static final String ROUTING_KEY2="topic.#";
+    public static final String MIAOSHA_QUEUE="miaosha.queue";
 
     /*
      * direct模式
@@ -25,6 +26,11 @@ public class MQConfig {
     @Bean
     public Queue queue(){
         Queue queue=new Queue(QUEUE_NAME);
+        return queue;
+    }
+    @Bean
+    public Queue miaoshaQueue(){
+        Queue queue=new Queue(MIAOSHA_QUEUE);
         return queue;
     }
 

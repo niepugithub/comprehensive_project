@@ -22,7 +22,7 @@ public interface GoodsDao {
     @Select("select g.*,mg.stock_count,mg.start_date,mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id=g.id")
     List<GoodsVo> listGoodsVo();
     @Select("select g.*,mg.stock_count,mg.start_date,mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id=g.id where g.id=#{goodsId}")
-    GoodsVo getGoodsVoById(@Param("goodsId") int id);
+    GoodsVo getGoodsVoById(@Param("goodsId") long id);
     // goodsId是goods对象的一个属性，这么写也是可以传递参数的！！！
     // 防止超卖，判断库存大于0才OK，利用数据库的锁防止多个线程同时修改库存！！
     // userId_goodsId利用数据库唯一索引，防止用户秒杀到两个商品；

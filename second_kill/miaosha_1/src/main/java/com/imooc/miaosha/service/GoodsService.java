@@ -24,15 +24,15 @@ public class GoodsService {
         return goodsDao.listGoodsVo();
     }
 
-    public GoodsVo getGoodsVoById(int id) {
+    public GoodsVo getGoodsVoById(long id) {
         return goodsDao.getGoodsVoById(id);
     }
 
-    public void reduceStock(GoodsVo goodsVo) {
+    public boolean reduceStock(GoodsVo goodsVo) {
          MiaoshaGoods g= new MiaoshaGoods();
          g.setGoodsId(goodsVo.getId());
          g.setStockCount(goodsVo.getStockCount()-1);
-        goodsDao.reduceStock(g);
+         return goodsDao.reduceStock(g)>0;
     }
 
     public GoodsVo getGoodsVoByGoodsId(long goodsId) {
