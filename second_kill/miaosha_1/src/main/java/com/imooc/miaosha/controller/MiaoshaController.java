@@ -5,6 +5,7 @@ import com.imooc.miaosha.domain.MiaoshaUser;
 import com.imooc.miaosha.domain.OrderInfo;
 import com.imooc.miaosha.rabbitmq.MQSender;
 import com.imooc.miaosha.rabbitmq.MiaoshaMessage;
+import com.imooc.miaosha.redis.AccessKey;
 import com.imooc.miaosha.redis.GoodsKey;
 import com.imooc.miaosha.redis.MiaoshaKey;
 import com.imooc.miaosha.redis.RedisService;
@@ -23,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -161,12 +163,23 @@ public class MiaoshaController implements InitializingBean{
 
     @RequestMapping(value = "/path",method = RequestMethod.GET)
     @ResponseBody
-    public Result<String> getMiaoshaPath(MiaoshaUser user, Model model,int goodsId,
-                         @RequestParam(value="verifyCode", defaultValue="0")int verifyCode) {
+    public Result<String> getMiaoshaPath(MiaoshaUser user, HttpServletRequest request, int goodsId,
+                          @RequestParam(value="verifyCode", defaultValue="0")int verifyCode) {
         // 防止用户不输验证码出错，MethodArgumentTypeMismatchException
-        model.addAttribute("user", user);
         if (user == null) {// 没有登录，去登录页面
             return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        // 查询访问次数
+        String uri = request.getRequestURI();
+        String key=uri+"_"+user.getId()+"_"+goodsId;
+        // 接口限流：5秒钟内只能访问5次
+        Integer accessCount = redisService.get(AccessKey.accessLimit,key,Integer.class);
+        if(accessCount==null){
+            redisService.set(AccessKey.accessLimit,key,1);
+        }else if(accessCount<5){
+            redisService.incr(AccessKey.accessLimit,key);
+        }else {
+            return Result.error(CodeMsg.ACCESS_LIMIT_REACHED);
         }
         // 验证前端传递过来的验证码是否正确
         boolean check=miaoshaService.checkVerifyCode(user,goodsId,verifyCode);
