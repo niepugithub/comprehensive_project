@@ -20,10 +20,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -164,10 +161,17 @@ public class MiaoshaController implements InitializingBean{
 
     @RequestMapping(value = "/path",method = RequestMethod.GET)
     @ResponseBody
-    public Result<String> getMiaoshaPath(MiaoshaUser user, Model model,int goodsId) {
+    public Result<String> getMiaoshaPath(MiaoshaUser user, Model model,int goodsId,
+                         @RequestParam(value="verifyCode", defaultValue="0")int verifyCode) {
+        // 防止用户不输验证码出错，MethodArgumentTypeMismatchException
         model.addAttribute("user", user);
         if (user == null) {// 没有登录，去登录页面
             return Result.error(CodeMsg.SESSION_ERROR);
+        }
+        // 验证前端传递过来的验证码是否正确
+        boolean check=miaoshaService.checkVerifyCode(user,goodsId,verifyCode);
+        if(!check){
+            return Result.error(CodeMsg.REQUEST_IILEGAL);
         }
         String path = miaoshaService.createPath(user,goodsId);
         return Result.success(path);

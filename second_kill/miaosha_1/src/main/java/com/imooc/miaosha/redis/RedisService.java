@@ -179,7 +179,7 @@ public class RedisService {
         }
     }
 
-    public boolean delete(MiaoshaUserKey getById, String s) {
+    public boolean delete(KeyPrefix getById, String s) {
         Jedis jedis=null;
         try{
             jedis=jedisPool.getResource();

@@ -150,4 +150,17 @@ public class MiaoshaService {
         String exp = ""+ num1 + op1 + num2 + op2 + num3;
         return exp;
     }
+
+    public boolean checkVerifyCode(MiaoshaUser user, int goodsId, int verifyCode) {
+        // 参数验证不要忘记！！！！！要养成习惯
+        if(user==null || goodsId<=0){
+            return false;
+        }
+        Integer codeOld = redisService.get(MiaoshaKey.getMiaoshaVerifyCode, user.getId()+","+goodsId, Integer.class);
+        if(codeOld == null || codeOld - verifyCode != 0 ) {
+            return false;
+        }
+        redisService.delete(MiaoshaKey.getMiaoshaVerifyCode, user.getId()+","+goodsId);
+        return true;
+    }
 }
