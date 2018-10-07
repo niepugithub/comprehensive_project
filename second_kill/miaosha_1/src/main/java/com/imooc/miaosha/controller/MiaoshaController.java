@@ -32,7 +32,11 @@ public class MiaoshaController {
 
     @Autowired
     MiaoshaService miaoshaService;
-
+    /*
+    * thymeleaf：do_miaosha:143；
+    *
+    * 页面静态化：miaosha:247；
+    * */
     @RequestMapping("/do_miaosha")
     public String doMiaosha(MiaoshaUser user, Model model,int goodsId){
         model.addAttribute("user",user);
@@ -58,6 +62,7 @@ public class MiaoshaController {
         model.addAttribute("goods",goodsVo);
         return "order_detail";
     }
+
     // 上面返回页面：这里由于商品详情页是静态化的，ajax提交请求，写跳转页面没有用
     @RequestMapping("/miaosha")
     @ResponseBody

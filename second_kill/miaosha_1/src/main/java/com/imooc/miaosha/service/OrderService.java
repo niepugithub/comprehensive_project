@@ -38,12 +38,12 @@ public class OrderService {
         orderInfo.setGoodsPrice(goodsVo.getMiaoshaPrice());
         orderInfo.setStatus(0);// 订单的五种状态，最好使用枚举表示下，可读性好
         orderInfo.setUserId(user.getId());
-        long orderId = orderDao.insert(orderInfo);
+        orderDao.insert(orderInfo);
         // userId_goodsId利用数据库唯一索引，防止用户秒杀到两个商品；
         // update判断库存大于0，防止超卖；数据库会禁止多个线程同时修改一条记录的
         MiaoshaOrder miaoshaOrder=new MiaoshaOrder();
         miaoshaOrder.setGoodsId(orderInfo.getGoodsId());
-        miaoshaOrder.setOrderId(orderId);
+        miaoshaOrder.setOrderId(orderInfo.getId());
         miaoshaOrder.setUserId(user.getId());
         orderDao.insertMiaoshaOrder(miaoshaOrder);
         return orderInfo;
