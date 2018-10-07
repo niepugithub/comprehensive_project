@@ -88,7 +88,11 @@ public class MiaoshaController implements InitializingBean{
         if(user==null){// 没有登录，去登录页面
             return Result.error(CodeMsg.SESSION_ERROR);
         }
-
+        //内存标记，减少redis访问
+        boolean over = localOverMap.get(goodsId);
+        if(over) {
+            return Result.error(CodeMsg.MIAO_SHA_OVER);
+        }
         // 从redis中获取库存信息，而不是直接查询数据库了，之前是直接查询数据库
         long stock=redisService.decr(GoodsKey.getMiaoshaGoodsStock,goodsId+"");
         if(stock<0){//库存以及小于0了，直接返回秒杀失败
