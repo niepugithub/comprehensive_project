@@ -51,7 +51,7 @@
                 <!--验证码和输入框横排-->
                 <div class="row">
                     <div class="form-inline">
-                        <img id="verifyCodeImg" width="80" height="32" style="display: none">
+                        <img id="verifyCodeImg" width="80" height="32" style="display: none" onclick="refreshVerifyCode()">
                         <input id="verifyCode" class="form-control" style="display: none">
                         <button class="btn btn-primary" type="button" id="buyButton" onclick="getMiaoshaPath()">立即秒杀
                         </button>
@@ -228,6 +228,10 @@
             $("#verifyCodeImg").hide();
             $("#verifyCode").hide();
         }
+    }
+
+    function refreshVerifyCode() {
+        $("#verifyCodeImg").attr("src","/miaosha/verifyCode?goodsId="+$("#goodsId").val()+"&timestamp="+new Date().getTime());
     }
 
 </script>
