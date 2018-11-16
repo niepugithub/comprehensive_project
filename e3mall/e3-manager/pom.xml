@@ -14,8 +14,18 @@
     <artifactId>e3-manager</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <!--聚合工程，引入其他模块-->
+    <modules>
+        <module>e3-manager-pojo</module>
+        <module>e3-manager-dao</module>
+        <module>e3-manager-interface</module>
+        <module>e3-manager-service</module>
+        <module>e3-manager-web</module>
+    </modules>
+
     <!--e3-manager是聚合工程（其他模块的父模块），打包方式也是pom-->
     <!--依赖common-->
+
     <dependencies>
         <dependency>
             <groupId>cn.e3mall</groupId>
@@ -23,4 +33,20 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
+    <!--运行时候，如果只是运行web工程，那么只要web依赖的其他模块有改变，都必须重新install到本地-->
+    <!--配置tomcat插件，运行聚合工程就好了，因为聚合工程知道所有的模块，改变了也不需要重新install-->
+    <!-- 配置tomcat插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>/</path>
+                    <port>8888</port>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
