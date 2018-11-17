@@ -20,6 +20,8 @@
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />
     <!-- 声明需要暴露的服务接口，服务名，实现类的首字母小写 -->
+    <!--超时设置，默认1秒-->
+    <!--<dubbo:service interface="cn.e3mall.service.ItemService" ref="itemServiceImpl" timeout="10000"/>-->
     <dubbo:service interface="cn.e3mall.service.ItemService" ref="itemServiceImpl" />
 
 </beans>
