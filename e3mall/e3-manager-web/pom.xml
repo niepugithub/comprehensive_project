@@ -91,6 +91,12 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>
@@ -103,6 +109,7 @@
                     <port>8081</port>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
