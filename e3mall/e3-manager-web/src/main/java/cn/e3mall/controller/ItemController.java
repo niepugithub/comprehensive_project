@@ -1,5 +1,6 @@
 package cn.e3mall.controller;
 
+import cn.e3mall.common.pojo.EasyUIDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,5 +28,11 @@ public class ItemController {
 	public TbItem getItemById(@PathVariable Long itemId) {
 		TbItem tbItem = itemService.getItemById(itemId);
 		return tbItem;
+	}
+
+	@RequestMapping("/item/list")
+	@ResponseBody
+	public EasyUIDataGridResult getItemList(int page,int rows){
+		return itemService.getItemList(page,rows);
 	}
 }
