@@ -20,7 +20,6 @@
         <module>e3-manager-dao</module>
         <module>e3-manager-interface</module>
         <module>e3-manager-service</module>
-        <module>e3-manager-web</module>
     </modules>
 
     <!--e3-manager是聚合工程（其他模块的父模块），打包方式也是pom-->
