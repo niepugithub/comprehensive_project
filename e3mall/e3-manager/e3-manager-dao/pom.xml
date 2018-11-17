@@ -50,4 +50,31 @@
         </dependency>
 
     </dependencies>
+
+    <!-- 如果不添加此节点mybatis的mapper.xml文件都会被漏掉。 -->
+    <!--解决mapper绑定异常，此异常的原因是由于mapper接口编译后在同一个目录下没
+    有找到mapper映射文件而出现的。由于maven工程在默认情况下src/main/java目录下
+    的mapper文件是不发布到target目录下的-->
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <!--如果想要resources仍然是资源目录，需要显示声明；不过dao层不声明也没事-->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
 </project>
