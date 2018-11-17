@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>hello，宜立方商城</h1>
+    <h1>hello，e3-manager-web</h1>
 </body>
 </html>
