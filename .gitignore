@@ -39,3 +39,4 @@
 .project
 .classpath
 .settings
+out/
