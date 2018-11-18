@@ -101,7 +101,8 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-        <!-- 文件上传组件 -->
+
+        <!-- 文件上传组件，记得添加依赖 -->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
