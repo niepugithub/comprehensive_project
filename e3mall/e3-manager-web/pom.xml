@@ -22,6 +22,13 @@
             <artifactId>e3-manager-interface</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!--服务层可以被任意表现层调用，这里e3-manager-web也依赖e3-content-interface-->
+        <!--manager-web也可调用content服务-->
+        <dependency>
+            <groupId>cn.e3mall</groupId>
+            <artifactId>e3-content-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- JSP相关 -->
         <dependency>
             <groupId>jstl</groupId>
