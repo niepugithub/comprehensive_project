@@ -103,6 +103,15 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.e3mall.pojo.TbContentCategory" >
+    <!--mybatis内置的long别名-->
+    <!--自增主键使用after，uuid序列啥的可以用before-->
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+      <!--
+         select last_insert_id()能区分并发时候插入的数据吗？可以分开；为啥呢？
+         与事务有关，我只在当前事务中最后生成的主键；其他事务中插入的与我无关；
+      -->
+        select last_insert_id()
+    </selectKey>
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -111,6 +120,15 @@
       #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.e3mall.pojo.TbContentCategory" >
+    <!--mybatis内置的long别名-->
+    <!--自增主键使用after，uuid序列啥的可以用before-->
+    <selectKey keyProperty="id" resultType="long" order="AFTER">
+      <!--
+         select last_insert_id()能区分并发时候插入的数据吗？可以分开；为啥呢？
+         与事务有关，我只在当前事务中最后生成的主键；其他事务中插入的与我无关；
+      -->
+      select last_insert_id()
+    </selectKey>
     insert into tb_content_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
