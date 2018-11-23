@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.e3mall</groupId>
+        <artifactId>e3-parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>cn.e3mall</groupId>
+    <artifactId>e3-content</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--手动添加上子模块，聚合工程没找到他的打war包的子模块content-service-->
+    <modules>
+        <module>e3-content-service</module>
+        <module>e3-content-interface</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>cn.e3mall</groupId>
+            <artifactId>e3-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <!--运行时候，如果只是运行web工程，那么只要web依赖的其他模块有改变，都必须重新install到本地-->
+    <!--配置tomcat插件，运行聚合工程就好了，因为聚合工程知道所有的模块，改变了也不需要重新install-->
+    <!-- 配置tomcat插件 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>/</path>
+                    <port>8083</port>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
