@@ -16,7 +16,7 @@
     <!-- 提供方应用信息，用于计算依赖关系 -->
     <dubbo:application name="e3-content" />
     <dubbo:registry protocol="zookeeper"
-                    address="192.168.25.130:2181" />
+                    address="192.168.1.130:2181" />
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <!--不能冲突，一个spring容器会开启一个端口号，用dubbo发布一个服务，改成20881-->
     <!--这里的服务可以使用main方法，只要起到部署服务就好了，tomcat的作用就是初始化spring容器

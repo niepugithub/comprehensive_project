@@ -39,7 +39,7 @@
     <!-- 引用dubbo服务 -->
     <dubbo:application name="e3-manager-web"/>
     <dubbo:registry protocol="zookeeper"
-           address="192.168.25.130:2181"/>
+           address="192.168.1.130:2181"/>
     <!--reference而不是service，引用服务而不是发布服务-->
     <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />
     <dubbo:reference interface="cn.e3mall.service.ItemCatService" id="itemCatService" />
