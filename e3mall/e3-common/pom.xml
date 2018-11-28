@@ -67,6 +67,13 @@
             <artifactId>fastdfs_client</artifactId>
             <version>1.25</version>
         </dependency>
+
+        <!-- Redis客户端，很多模块都用，放在common里面-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
