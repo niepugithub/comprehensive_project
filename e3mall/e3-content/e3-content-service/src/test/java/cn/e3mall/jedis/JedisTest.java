@@ -56,8 +56,8 @@ public class JedisTest {
         nodes.add(new HostAndPort("192.168.1.130", 7006));
         JedisCluster jedisCluster = new JedisCluster(nodes);
         //直接使用JedisCluster对象操作redis。
-        jedisCluster.set("test", "123");
-        String string = jedisCluster.get("test");
+        jedisCluster.set("test2", "222");
+        String string = jedisCluster.get("test2");
         System.out.println(string);
         //关闭JedisCluster对象
         jedisCluster.close();
