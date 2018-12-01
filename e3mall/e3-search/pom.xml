@@ -17,4 +17,26 @@
         <module>e3-search-service</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>cn.e3mall</groupId>
+            <artifactId>e3-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <!--运行时候，如果只是运行web工程，那么只要web依赖的其他模块有改变，都必须重新install到本地-->
+    <!--配置tomcat插件，运行聚合工程就好了，因为聚合工程知道所有的模块，改变了也不需要重新install-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <configuration>
+                    <path>/</path>
+                    <port>8084</port>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
