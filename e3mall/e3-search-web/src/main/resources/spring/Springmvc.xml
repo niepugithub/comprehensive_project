@@ -23,7 +23,8 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-
+    <!--全局异常处理器-->
+    <bean class="cn.e3mall.search.exception.GlobalExceptionResolver"/>
     <!--配置资源映射，防止静态资源也被拦截，注意/css后面还有个/，否则会被拦截-->
     <!--首页不需要/拦截，所以下面的静态资源也不会被访问，不配也没事-->
     <!--<mvc:resources mapping="/css/**" location="/css/"/>-->
