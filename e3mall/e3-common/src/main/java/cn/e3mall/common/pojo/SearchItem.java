@@ -63,4 +63,13 @@ public class SearchItem implements Serializable{
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
     }
+
+    // 页面上会调用这个方法；只返回一张图片
+    public String[] getImages(){
+        if(image!=null && !"".equals(image)){
+            String[] s=image.split(",");
+            return s;
+        }
+        return null;
+    }
 }
