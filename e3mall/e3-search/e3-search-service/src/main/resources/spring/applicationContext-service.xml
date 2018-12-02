@@ -10,7 +10,7 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <context:component-scan base-package="cn.e3mall.search.service"/>
+    <context:component-scan base-package="cn.e3mall.search.service,cn.e3mall.search.dao"/>
 
     <!-- 使用dubbo发布服务 -->
     <!-- 提供方应用信息，用于计算依赖关系 -->
@@ -27,4 +27,5 @@
     <!-- 声明需要暴露的服务接口，服务名，实现类的首字母小写 -->
     <!--超时设置，默认1秒-->
     <dubbo:service interface="cn.e3mall.search.service.SearchItemService" ref="searchItemServiceImpl" timeout="60000"/>
+    <dubbo:service interface="cn.e3mall.search.service.SearchService" ref="searchServiceImpl" timeout="60000"/>
 </beans>
