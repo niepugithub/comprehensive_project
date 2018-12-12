@@ -49,6 +49,8 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
         </dependency>
+
+        <!--整合activemq的jar包-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
