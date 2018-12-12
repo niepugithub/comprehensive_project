@@ -25,7 +25,7 @@ public class ActiveMqSpring {
         jmsTemplate.send(destination, new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {
-                return session.createTextMessage("send activemq message");
+                return session.createTextMessage("send activemq message 3");
             }
         });
     }
