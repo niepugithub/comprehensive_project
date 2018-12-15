@@ -36,7 +36,7 @@ public class FastDfsTest {
 	public void testFastDfsClient() throws Exception {
 //		FastDFSClient fastDFSClient = new FastDFSClient("D:\\local_git_repository\\comprehensive_project\\e3mall\\e3-manager-web\\src\\main\\resources\\conf\\client.conf");
 		FastDFSClient fastDFSClient = new FastDFSClient("classpath:conf/client.conf");
-		String string = fastDFSClient.uploadFile("D:\\picture\\2.jpg");
+		String string = fastDFSClient.uploadFile("D:\\python\\2.jpg");
 		System.out.println(string);
 	}
 }
