@@ -11,5 +11,9 @@
 	<bean id="httpSolrServer" class="org.apache.solr.client.solrj.impl.HttpSolrServer">
 		<constructor-arg index="0" value="http://192.168.1.140:8080/solr-4.10.3/collection1"/>
 	</bean>
-	
+	<!-- 集群版solrJ -->
+	<!-- <bean id="cloudSolrServer" class="org.apache.solr.client.solrj.impl.CloudSolrServer">
+		<constructor-arg index="0" value="192.168.25.163:2181,192.168.25.163:2182,192.168.25.163:2183"></constructor-arg>
+		<property name="defaultCollection" value="collection2"></property>
+	</bean> -->
 </beans>
