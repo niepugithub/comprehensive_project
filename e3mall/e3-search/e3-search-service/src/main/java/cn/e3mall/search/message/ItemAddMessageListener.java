@@ -53,7 +53,8 @@ public class ItemAddMessageListener implements MessageListener{
             doc.addField("item_category_name", searchItem.getCategory_name());
             //把文档对象写入索引库
             solrServer.add(doc);
-
+            //提交
+            solrServer.commit();
         } catch (JMSException e) {
             e.printStackTrace();
         } catch (SolrServerException e) {
