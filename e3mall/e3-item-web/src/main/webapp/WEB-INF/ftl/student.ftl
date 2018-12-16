@@ -1,7 +1,6 @@
 <html>
 <head>
 	<title>student</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
 	学生信息：<br>
