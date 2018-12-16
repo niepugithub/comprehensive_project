@@ -2101,3 +2101,383 @@ Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: n
 
 [INFO ] 2018-12-16 20:35:30,769 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
 Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:35:51,776 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:35:58,288 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:36:19,297 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:36:24,997 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:36:46,000 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:36:52,434 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:37:13,441 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:37:19,732 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:37:40,732 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:37:47,115 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:38:08,113 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:38:13,856 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:38:34,857 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:38:40,661 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:39:01,672 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:39:07,655 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:39:28,663 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:39:34,818 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:39:55,819 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:40:02,286 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:40:23,293 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:40:29,110 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:40:50,107 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:40:56,678 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:41:17,680 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:41:23,555 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:41:44,553 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:41:50,721 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:42:11,718 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:42:18,028 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:42:39,042 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:42:45,606 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:43:06,606 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:43:12,895 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:43:33,896 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:43:39,605 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:44:00,603 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:44:06,261 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:44:27,269 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:44:33,125 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:44:54,123 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:44:59,915 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:45:20,921 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:45:27,268 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:45:48,265 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:45:54,703 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:46:15,708 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:46:22,249 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:46:43,259 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:46:49,572 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:47:10,567 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:47:16,470 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:47:37,468 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:47:43,505 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:48:04,525 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:48:10,826 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:48:31,835 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:48:38,228 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:48:59,230 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:49:05,290 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:49:26,294 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:49:32,523 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:49:53,524 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:49:59,999 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:50:21,001 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:50:27,201 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:50:48,200 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:50:54,595 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:51:15,597 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:51:21,358 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:51:42,356 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:51:48,617 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:52:09,612 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:52:15,795 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:52:36,793 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:52:43,229 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:53:04,224 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:53:10,513 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:53:31,516 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:53:37,413 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:53:58,416 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:54:04,937 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:54:25,937 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:54:31,620 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:54:52,615 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:54:58,427 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:55:19,433 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:55:25,326 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:55:46,331 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:55:52,146 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:56:13,149 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:56:19,416 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:56:40,417 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
+
+
+[INFO ] 2018-12-16 20:56:46,580 method:org.apache.zookeeper.ClientCnxn$SendThread.logStartConnect(ClientCnxn.java:1029)
+Opening socket connection to server 192.168.1.130/192.168.1.130:2181. Will not attempt to authenticate using SASL (unknown error)
+
+
+[INFO ] 2018-12-16 20:57:07,583 method:org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1166)
+Socket error occurred: 192.168.1.130/192.168.1.130:2181: Connection timed out: no further information
