@@ -1,0 +1,56 @@
+130:redis集群，jdk，tomcat，zookeeper集群，zookeeper
+
+140：solr服务，jdk，tomcat，zookeeper集群，zookeeper
+
+
+130用的：zookeeper单机版，redis集群
+
+140用的solr单机版，zookeeper集群，再配置solr集群吧（暂时没成功）,activeMq
+
+150 fastfds 分布式文件存储系统
+
+
+e3商城启动：  下面的linux后台程序应该是最先启动的，然后启动服务层，最后是web层
+
+150图片服务器：
+	打开150的系统就好了   http://192.168.1.150/group1/M00/00/00/wKgBllwUwbWAW6HrAAJAKegMQfk975.jpg
+
+	如果不知道，可以去e3-manager-web的test上传图片测试类中找到
+
+130 zookeeper 单机版：
+	130机器：bin/zkServer.sh start 就OK了
+
+140 solr单机版： portal-web依赖
+	search服务需要开启 /opt/tomcat-8.0.53
+
+
+130 redis集群，开启  solr依赖
+	就用redis单机版吧 /root/np/redis-4.0.11
+	src/redis-server redis.conf
+
+
+项目搜索：search-web，进入portal-web后选择关键字搜索，就会调用search模块，进入search-web
+
+新添加的商品想要被搜到，需要一键导入索引库
+
+
+
+整个项目结构：e3-manager-web  e3-manager (聚合工程interface,service,e3-manager-dao,pojo) 依赖redis服务  赖分布式文件系统
+	      e3-search-web   e3-search  (聚合工程interface,service)    依赖solr服务
+	      e3-portal-web   e3-content (聚合工程interface,service)    依赖redis服务
+
+	最后两个：e3-common e3-parent
+
+	搜索服务依赖solr服务	其他服务，内容服务，商品服务依赖redis，商品服务还要依赖分布式文件系统
+
+
+
+然后后台管理商品的页面，比如增加商品，查询商品等就可以看到了
+
+
+
+
+
+
+
+

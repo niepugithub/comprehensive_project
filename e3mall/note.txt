@@ -1,0 +1,11 @@
+页面静态化：
+
+	不是改后缀，改后缀是伪静态化
+	真的生成html，将html响应给用户就OK了
+
+freemarker 基于模板生成的静态页面的工具包
+
+day9 - 9 sublime操作多行
+
+freemarker页面静态化：html页面直接存在于用户浏览器，如果是jsp的话，每次都要根据jsp重新生成html
+
