@@ -9,6 +9,7 @@ import cn.e3mall.pojo.TbUserExample;
 import cn.e3mall.sso.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 import cn.e3mall.pojo.TbUserExample.Criteria;
 
@@ -21,6 +22,7 @@ import java.util.UUID;
  * @version:1.0
  * @date:2018/12/17 22:41
  **/
+@Service
 public class LoginServiceImpl implements LoginService {
     @Autowired
     private TbUserMapper userMapper;

@@ -10,3 +10,6 @@ cn.e3mall.sso.service.LoginService from the url zookeeper://192.168.1.130:2181/c
 application=e3-sso-web&dubbo=2.5.3&interface=cn.e3mall.sso.service.LoginService&methods=userLogin&
 pid=6076&revision=1.0-SNAPSHOT&side=consumer&timestamp=1545060097552 to the consumer 192.168.80.1
 use dubbo version 2.5.3
+
+搞了半天，发现zookeeper中虽然有服务节点，但是实际上服务创建失败，服务实现类忘了加@Service注解
+这样虽然有服务节点，消费放还是无法消费；出现这个异常时候，不能仅仅从消费方检查，也要从服务方检查；
