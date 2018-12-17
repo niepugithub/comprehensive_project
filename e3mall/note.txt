@@ -19,6 +19,17 @@ tomcat有session共享功能，但是session之间共享会限制集群度，无
 存储session，而使用单独的服务器存储session，所以不用tomcat自己的session而使用我们自己
 模拟的session使用redis缓存，session是键值对且有过期时间，与redis如出一辙
 
+将session放入到redis中，那么用什么做key?
+不能用userId，比如换电脑了，应该不是同一个session，如果用的userId，多台电脑登录还是一个session，不行！！
+session有一个sessionId，通过sessionId区分不同会话，sessionId放在cookie中，下次请求带上sessionId
+因此，我们需要模拟sessionId，并且不能重复；自己生成且不重复，使用uuid，也就是token，本质是sessionId
+key就是token，一个token对应一个session，一个session对应一个用户信息
+value：用户信息
+
+需要将key（token）写入到cookie，下次用户请求会带上
+
+
+
 单点登录系统，主要是解决session共享问题
 
 
