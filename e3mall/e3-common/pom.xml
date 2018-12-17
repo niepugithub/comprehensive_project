@@ -68,6 +68,12 @@
             <version>1.25</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Redis客户端，很多模块都用，放在common里面-->
         <dependency>
             <groupId>redis.clients</groupId>

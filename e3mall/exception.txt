@@ -1,0 +1,12 @@
+org.springframework.beans.factory.BeanCreationException:
+Error creating bean with name 'loginController': Injection of autowired dependencies failed;
+nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field:
+private cn.e3mall.sso.service.LoginService cn.e3mall.sso.controller.LoginController.loginService;
+nested exception is org.springframework.beans.factory.BeanCreationException:
+Error creating bean with name 'loginService': FactoryBean threw exception on object creation;
+nested exception is java.lang.IllegalStateException: Failed to check the status of the service
+cn.e3mall.sso.service.LoginService. No provider available for the service
+cn.e3mall.sso.service.LoginService from the url zookeeper://192.168.1.130:2181/com.alibaba.dubbo.registry.RegistryService?
+application=e3-sso-web&dubbo=2.5.3&interface=cn.e3mall.sso.service.LoginService&methods=userLogin&
+pid=6076&revision=1.0-SNAPSHOT&side=consumer&timestamp=1545060097552 to the consumer 192.168.80.1
+use dubbo version 2.5.3
