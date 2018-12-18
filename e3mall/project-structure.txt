@@ -18,15 +18,15 @@ e3商城启动：  下面的linux后台程序应该是最先启动的，然后�
 	如果不知道，可以去e3-manager-web的test上传图片测试类中找到
 
 130 zookeeper 单机版：
-	130机器：bin/zkServer.sh start 就OK了
+	130机器：/root/np/zookeeper-3.4.13/bin/zkServer.sh start 就OK了
 
 140 solr单机版： portal-web依赖
-	search服务需要开启 /opt/tomcat-8.0.53
+	search服务需要开启 /opt/tomcat-8.0.53/bin/start.sh
 
 
 130 redis集群，开启  solr依赖
-	就用redis单机版吧 /root/np/redis-4.0.11
-	src/redis-server redis.conf
+	就用redis单机版吧
+	/root/np/redis-4.0.11/src/redis-server /root/np/redis-4.0.11/redis.conf
 
 
 项目搜索：search-web，进入portal-web后选择关键字搜索，就会调用search模块，进入search-web
