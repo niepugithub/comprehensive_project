@@ -13,3 +13,10 @@ use dubbo version 2.5.3
 
 搞了半天，发现zookeeper中虽然有服务节点，但是实际上服务创建失败，服务实现类忘了加@Service注解
 这样虽然有服务节点，消费放还是无法消费；出现这个异常时候，不能仅仅从消费方检查，也要从服务方检查；
+
+
+Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.2:compile
+(default-compile)on project e3-sso-web: Compilation failure: Compilation failure:
+
+e3-sso-interface加了新接口，单单install这个e3-sso-interface是不够的，还是乖乖install e3-sso OK
+
