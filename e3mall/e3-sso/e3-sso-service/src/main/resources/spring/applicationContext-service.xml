@@ -28,4 +28,5 @@
     <!--超时设置，默认1秒-->
     <dubbo:service interface="cn.e3mall.sso.service.RegisterService" ref="registerServiceImpl" timeout="10000"/>
     <dubbo:service interface="cn.e3mall.sso.service.LoginService" ref="loginServiceImpl" timeout="10000"/>
+    <dubbo:service interface="cn.e3mall.sso.service.TokenService" ref="tokenServiceImpl" timeout="10000"/>
 </beans>
