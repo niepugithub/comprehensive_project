@@ -37,5 +37,6 @@
     <!--reference而不是service，引用服务而不是发布服务-->
     <dubbo:reference interface="cn.e3mall.sso.service.RegisterService" id="registerService" />
     <dubbo:reference interface="cn.e3mall.sso.service.LoginService" id="loginService" />
+    <dubbo:reference interface="cn.e3mall.sso.service.TokenService" id="tokenService" />
 
 </beans>
