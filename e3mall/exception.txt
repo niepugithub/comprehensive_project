@@ -20,3 +20,10 @@ Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.2:compil
 
 e3-sso-interface加了新接口，单单install这个e3-sso-interface是不够的，还是乖乖install e3-sso OK
 
+
+明明登录的130机器，没想到却到了140，真是诡异；
+zookeeper和redis单机都在130机器上
+
+webapp下面的js文件，如何加载到target目录下的？？
+改变了js文件，竟没有用到最新的；原来还是浏览器缓存；明明已经强制清空缓存了，真是诡异
+

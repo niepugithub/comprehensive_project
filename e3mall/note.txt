@@ -47,4 +47,17 @@ value：用户信息
 因此，我们需要sso做一个restAPI，让js调用
 
 
+js中根据token ajax请求获取用户信息分析：
+（1）使用js从cookie中获取token
+（2）ajax请求接口user/token/{token}
+（3）得到json数据
+（4）从json中解析出用户名
+（5）把用户名显示在页面
+
+解决ajax跨越请求：其实请求已经跨域发送请求OK了，只是浏览器不让取跨域的数据；解决方案就是js的一个特性或者
+说漏洞：js可以跨域加载js文件；比如说我们如果本地没有js-min文件，可以直接写官网位置的js-min来获取
+
+
+
+
 
