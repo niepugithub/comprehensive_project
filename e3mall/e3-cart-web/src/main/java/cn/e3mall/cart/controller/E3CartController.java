@@ -1,8 +1,10 @@
 package cn.e3mall.cart.controller;
 
 import cn.e3mall.common.utils.CookieUtils;
+import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.common.utils.JsonUtils;
 import cn.e3mall.pojo.TbItem;
+import cn.e3mall.pojo.TbUser;
 import cn.e3mall.service.ItemService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -103,5 +106,28 @@ public class E3CartController {
         request.setAttribute("cartList", cartList);
         //返回逻辑视图
         return "cart";
+    }
+
+    /**
+     * 更新购物车商品数量
+     */
+    @RequestMapping("/cart/update/num/{itemId}/{num}")
+    @ResponseBody // ResponseBody注解如果没有加Jackson包的话，会报406错误的
+    public E3Result updateCartNum(@PathVariable Long itemId, @PathVariable Integer num
+            , HttpServletRequest request ,HttpServletResponse response) {
+        //从cookie中取购物车列表
+        List<TbItem> cartList = getCartListFromCookie(request);
+        //遍历商品列表找到对应的商品
+        for (TbItem tbItem : cartList) {
+            if (tbItem.getId().longValue() == itemId) {
+                //更新数量
+                tbItem.setNum(num);
+                break;
+            }
+        }
+        //把购物车列表写回cookie
+        CookieUtils.setCookie(request, response, "cart", JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
+        //返回成功
+        return E3Result.ok();
     }
 }
