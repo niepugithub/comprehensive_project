@@ -3,6 +3,7 @@ var CART = {
 		$(".increment").click(function(){//＋
 			var _thisInput = $(this).siblings("input");
 			_thisInput.val(eval(_thisInput.val()) + 1);
+			// .action结尾，解决html结尾不能响应ajax请求数据问题
 			$.post("/cart/update/num/"+_thisInput.attr("itemId")+"/"+_thisInput.val() + ".action",function(data){
 				CART.refreshTotalPrice();
 			});
