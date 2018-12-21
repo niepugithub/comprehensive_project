@@ -87,4 +87,21 @@ public class E3CartController {
         List<TbItem> list = JsonUtils.jsonToList(json, TbItem.class);
         return list;
     }
+
+    /**
+     * 展示购物车列表
+     * <p>Title: showCatList</p>
+     * <p>Description: </p>
+     * @param request
+     * @return
+     */
+    @RequestMapping("/cart/cart")
+    public String showCatList(HttpServletRequest request, HttpServletResponse response) {
+        //从cookie中取购物车列表
+        List<TbItem> cartList = getCartListFromCookie(request);
+        //把列表传递给页面
+        request.setAttribute("cartList", cartList);
+        //返回逻辑视图
+        return "cart";
+    }
 }
