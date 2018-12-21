@@ -130,4 +130,29 @@ public class E3CartController {
         //返回成功
         return E3Result.ok();
     }
+
+    /**
+     * 删除购物车商品
+     */
+    @RequestMapping("/cart/delete/{itemId}")
+    public String deleteCartItem(@PathVariable Long itemId, HttpServletRequest request,
+                                 HttpServletResponse response) {
+        //从cookie中取购物车列表
+        List<TbItem> cartList = getCartListFromCookie(request);
+        //遍历列表，找到要删除的商品
+        for (TbItem tbItem : cartList) {
+            if (tbItem.getId().longValue() == itemId) {
+                //删除商品
+                cartList.remove(tbItem);
+                //跳出循环
+                break;
+            }
+        }
+        //把购物车列表写入cookie
+        CookieUtils.setCookie(request, response, "cart", JsonUtils.objectToJson(cartList), COOKIE_CART_EXPIRE, true);
+        //返回逻辑视图
+        // /是绝对路径，从当前工程名开始计算：http://localhost:8090
+        return "redirect:/cart/cart.html";
+    }
+
 }
