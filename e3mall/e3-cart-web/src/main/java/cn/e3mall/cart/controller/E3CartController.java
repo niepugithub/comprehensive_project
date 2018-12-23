@@ -116,6 +116,21 @@ public class E3CartController {
     public String showCatList(HttpServletRequest request, HttpServletResponse response) {
         //从cookie中取购物车列表
         List<TbItem> cartList = getCartListFromCookie(request);
+
+        //判断用户是否为登录状态
+        TbUser user = (TbUser) request.getAttribute("user");
+        //如果是登录状态
+        if (user != null) {
+            //从cookie中取购物车列表
+            //如果不为空，把cookie中的购物车商品和服务端的购物车商品合并。
+            cartService.mergeCart(user.getId(), cartList);
+            //把cookie中的购物车删除
+            CookieUtils.deleteCookie(request, response, "cart");
+            //从服务端取购物车列表
+            cartList = cartService.getCartList(user.getId());
+
+        }
+
         //把列表传递给页面
         request.setAttribute("cartList", cartList);
         //返回逻辑视图
