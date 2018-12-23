@@ -6,6 +6,7 @@ import cn.e3mall.sso.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +30,10 @@ public class LoginController {
     private String TOKEN_KEY;
 
     @RequestMapping("/page/login")
-    public String showLogin(){
+    public String showLogin(String redirect,Model model){
+        // cookie中购物车点击结算时候，去订单模块，没有登录需要登录，登录之后应该直接去订单页面而不是首页
+        // 将redirect参数传递到login.jsp ，细看119行
+        model.addAttribute("redirect", redirect);
         return "login";
     }
 
