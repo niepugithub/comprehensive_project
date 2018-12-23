@@ -35,6 +35,7 @@ public class E3CartController {
 
     @Autowired
     private ItemService itemService;
+    // e3-cart-web层引用cart服务
     @Autowired
     private CartService cartService;
 

@@ -28,11 +28,20 @@
     <!--<mvc:resources mapping="/css/**" location="/css/"/>-->
     <!--<mvc:resources mapping="/js/**" location="/js/"/>-->
 
+    <!-- 拦截器配置 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="cn.e3mall.cart.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 引用dubbo服务 -->
     <dubbo:application name="e3-cart-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.1.130:2181"/>
     <!--reference而不是service，引用服务而不是发布服务-->
     <dubbo:reference interface="cn.e3mall.service.ItemService" id="itemService" />
     <dubbo:reference interface="cn.e3mall.sso.service.TokenService" id="tokenService" />
+    <!--e3-cart-web层引用cart服务-->
     <dubbo:reference interface="cn.e3mall.cart.service.CartService" id="cartService" />
 </beans>
