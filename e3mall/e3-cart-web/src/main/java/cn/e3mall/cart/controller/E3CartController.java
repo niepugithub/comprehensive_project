@@ -143,6 +143,7 @@ public class E3CartController {
         for (TbItem tbItem : cartList) {
             if (tbItem.getId().longValue() == itemId) {
                 //删除商品
+                // 遍历过程中删除list中的元素，删除之后需要赶紧溜，否则会报错的
                 cartList.remove(tbItem);
                 //跳出循环
                 break;
