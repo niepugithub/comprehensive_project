@@ -26,6 +26,5 @@
     <dubbo:protocol name="dubbo" port="20884" />
     <!-- 声明需要暴露的服务接口，服务名，实现类的首字母小写 -->
     <!--超时设置，默认1秒-->
-    <!--<dubbo:service interface="cn.e3mall.service.ItemService" ref="itemServiceImpl" timeout="10000"/>-->
-    <!--<dubbo:service interface="cn.e3mall.content.service.ContentCategoryService" ref="contentCategoryServiceImpl" timeout="600000"/>-->
+    <dubbo:service interface="cn.e3mall.cart.service.CartService" ref="cartServiceImpl" timeout="10000"/>
 </beans>

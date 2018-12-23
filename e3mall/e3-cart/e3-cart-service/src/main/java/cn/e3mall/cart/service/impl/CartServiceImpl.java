@@ -16,7 +16,7 @@ import cn.e3mall.mapper.TbItemMapper;
 import cn.e3mall.pojo.TbItem;
 
 /**
- * 购物车处理服务
+ * 购物车处理服务，这里才开始真正使用，之前复制多了
  * <p>Title: CartServiceImpl</p>
  * <p>Description: </p>
  * <p>Company: www.itcast.cn</p> 

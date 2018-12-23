@@ -1,5 +1,6 @@
 package cn.e3mall.cart.controller;
 
+import cn.e3mall.cart.service.CartService;
 import cn.e3mall.common.utils.CookieUtils;
 import cn.e3mall.common.utils.E3Result;
 import cn.e3mall.common.utils.JsonUtils;
@@ -34,10 +35,22 @@ public class E3CartController {
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private CartService cartService;
 
     @RequestMapping("/cart/add/{itemId}")
     public String addCart(@PathVariable Long itemId, @RequestParam(defaultValue = "1") Integer num,
                           HttpServletRequest request, HttpServletResponse response) {
+        //判断用户是否登录
+        TbUser user = (TbUser) request.getAttribute("user");
+        //如果是登录状态，把购物车写入redis
+        if (user != null) {
+            //保存到服务端
+            cartService.addCart(user.getId(), itemId, num);
+            //返回逻辑视图
+            return "cartSuccess";
+        }
+        //如果未登录使用cookie
         //从cookie中取购物车列表
         List<TbItem> cartList = getCartListFromCookie(request);
         //判断商品在商品列表中是否存在
