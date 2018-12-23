@@ -29,7 +29,7 @@ public class OrderController {
         //取支付方式列表
         //静态数据
         //根据用户id取购物车列表 ；先写死，看看订单确认页面好不好使
-        List<TbItem> cartList = cartService.getCartList(5);
+        List<TbItem> cartList = cartService.getCartList(user.getId());
         //把购物车列表传递给jsp
         request.setAttribute("cartList", cartList);
         //返回页面
