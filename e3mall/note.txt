@@ -90,7 +90,15 @@ d)	如果redis中有数据cookie中也有数据，需要做数据合并。相同
 
 订单对应物流信息，商品信息等需要保存；订单和收货地址要一一对应
 
+订单POJO放在何处分析
+订单表现层需要POJO，表现层需要传递到订单服务层，因此两层都需要POJO；既然都用到，那就需要放在公共地方，放在
+common中可否？不行，订单POJO需要继承TbItem，TbItem又是在manager-POJO中，这样会造成common依赖manager-POJO，
+而manager-POJO依赖common，就会造成循环依赖
 
+OrderPojo到底放在哪里合适呢？
+放在order-interface OK
+这样的order-service依赖接口，order-web也依赖，这样两者都需要就好办了。两者共同的地方除了common，其实还有
+interface。interface也可以放POJO
 
 
 
