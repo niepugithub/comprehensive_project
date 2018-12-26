@@ -43,5 +43,6 @@
     <!--reference而不是service，引用服务而不是发布服务-->
     <dubbo:reference interface="cn.e3mall.cart.service.CartService" id="cartService" />
     <dubbo:reference interface="cn.e3mall.sso.service.TokenService" id="tokenService" />
+    <dubbo:reference interface="cn.e3mall.order.service.OrderService" id="orderService" />
 
 </beans>
