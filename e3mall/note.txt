@@ -100,6 +100,7 @@ OrderPojo到底放在哪里合适呢？
 这样的order-service依赖接口，order-web也依赖，这样两者都需要就好办了。两者共同的地方除了common，其实还有
 interface。interface也可以放POJO
 
-
+service层中不要try异常，因为service层中有事务，try捕获异常，导致事务会认为处理OK了，所以就算捕获
+到了异常还是得抛出去，那就没必要这么麻烦，干脆不捕获就好了；
 
 
