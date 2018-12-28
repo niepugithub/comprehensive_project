@@ -13,6 +13,11 @@
     <artifactId>e3-order</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>e3-order-interface</module>
+        <module>e3-order-service</module>
+    </modules>
+
     <!--运行时候，如果只是运行web工程，那么只要web依赖的其他模块有改变，都必须重新install到本地-->
     <!--配置tomcat插件，运行聚合工程就好了，因为聚合工程知道所有的模块，改变了也不需要重新install-->
     <build>
