@@ -85,3 +85,16 @@ e3-order  clean tomcat7:run
 </modules>
 
 
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /H:/local_git_repository/comprehensive_project/e3mall/e3-order-web/src/main/java/cn/e3mall/order/controller/OrderController.java:[60,24] 找不到符号
+  符号:   方法 clearCartItem(java.lang.Long)
+  位置: 类型为cn.e3mall.cart.service.CartService的变量 cartService
+
+提示说明：找不到cartService的clearCartItem方法，从消费方是提供方两方面考虑
+提供方：去zookeeper下面查看节点，可以看到节点提供的服务有clearCartItem方法，排除
+消费方：消费方有引用服务方，但是服务方的接口不是最新的，接口增减clearCartItem方法
+的时候没有install！！！！
+
+
+
