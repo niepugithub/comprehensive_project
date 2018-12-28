@@ -41,3 +41,47 @@ ajax响应406错误:
 
     // 这里的RequestMapping中不添后缀；比如请求/cart/update/num/**.html，controller中写/cart/update/num/**
 
+
+
+e3-order  clean tomcat7:run
+发现项目只是build success，并没有创建跑起来
+
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building e3-order 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ e3-order ---
+[INFO]
+[INFO] >>> tomcat7-maven-plugin:2.2:run (default-cli) > process-classes @ e3-order >>>
+[INFO]
+[INFO] <<< tomcat7-maven-plugin:2.2:run (default-cli) < process-classes @ e3-order <<<
+[INFO]
+[INFO] --- tomcat7-maven-plugin:2.2:run (default-cli) @ e3-order ---
+[INFO] Skipping non-war project
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 3.553 s
+[INFO] Finished at: 2018-12-28T22:22:19+08:00
+[INFO] Final Memory: 10M/111M
+[INFO] ------------------------------------------------------------------------
+
+解决方法是：告诉Tomcat插件，当前不是使用war包装。在pom.xml的tomcat plugin的configuration中加入
+<ignorePackaging>true</ignorePackaging>，即告诉tomcat启动时忽略当前是否有war包，
+再次运行tomcat7:run命令，tomcat即可正常启动。
+---------------------
+作者：sinat_28642557
+来源：CSDN
+原文：https://blog.csdn.net/sinat_28642557/article/details/54601070
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+加上<ignorePackaging>true</ignorePackaging>虽然可有跑起来，但是service并没有注入到zookeeper中；正确的做法是：
+在e3-order的聚合工程中module标签引入两个子工程
+<modules>
+       <module>e3-order-interface</module>
+       <module>e3-order-service</module>
+</modules>
+
+
