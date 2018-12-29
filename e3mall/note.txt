@@ -117,6 +117,16 @@ service层中不要try异常，因为service层中有事务，try捕获异常，
 mycat提高可用性数据分片集群。可以像使用mysql一样使用mycat，开发人员感知不到mycat的存在
 
 
+mycat 三大配置文件
+
+schema.xml配置逻辑数据库，也就是需要分库的，比如e3mall-32
+rule.xml分表规则
+server.xml，程序访问mycat的用户名和密码等
+
+也就是mycat对mysql进行了抽象封装，程序访问mycat，mycat转化为对应的mysql操作
+
+mycat按照id分片，500万放第一个库，500万01放在第二个库；每个库超过500万条性能就会下降
+
 
 
 
