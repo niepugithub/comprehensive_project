@@ -96,5 +96,8 @@ e3-order  clean tomcat7:run
 消费方：消费方有引用服务方，但是服务方的接口不是最新的，接口增减clearCartItem方法
 的时候没有install！！！！
 
+本地eclipse能正常跑代码，部署不行？
+原因：jar包冲突？？？
+
 
 
