@@ -99,5 +99,19 @@ e3-order  clean tomcat7:run
 本地eclipse能正常跑代码，部署不行？
 原因：jar包冲突？？？
 
+访问e3-manager-web报错：
+java.lang.IllegalStateException: Failed to check the status of the service
+cn.e3mall.content.service.ContentCategoryService. No provider available
+for the service cn.e3mall.content.service.ContentCategoryService from the url
+zookeeper://192.168.1.130:2181/com.alibaba.dubbo.registry.RegistryService?
+anyhost=true&application=e3-manager-web&check=false&dubbo=2.5.3&interface=
+cn.e3mall.content.service.ContentCategoryService&methods=addContentCategory,
+getContentCatList&pid=23724&revision=1.0-SNAPSHOT&side=consumer&timeout=600000&
+timestamp=1546179752577 to the consumer 218.205.57.154 use dubbo version 2.5.3
 
+	com.alibaba.dubbo.config.ReferenceConfig.createProxy(ReferenceConfig.java:420)
+
+dubbo-admin所在的tomcat中的日志输出：
+catalina.out中输出：
+dubbo version: 2.6.0
 

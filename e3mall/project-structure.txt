@@ -1,33 +1,33 @@
-130:redis集群，jdk，tomcat，zookeeper集群，zookeeper
 
-140：solr服务，jdk，tomcat，zookeeper集群，zookeeper
-
-
-130用的：zookeeper单机版，redis集群
-
-140用的solr单机版，zookeeper集群，再配置solr集群吧（暂时没成功）,activeMq
-
+三台机器安装情况
 150 fastfds 分布式文件存储系统
-
+140：solr服务，jdk，tomcat，zookeeper集群，zookeeper
+130:redis集群，jdk，tomcat，zookeeper集群，zookeeper
 
 e3商城启动：  下面的linux后台程序应该是最先启动的，然后启动服务层，最后是web层
 
 150图片服务器：
 	打开150的系统就好了   http://192.168.1.150/group1/M00/00/00/wKgBllwUwbWAW6HrAAJAKegMQfk975.jpg
-
 	如果不知道，可以去e3-manager-web的test上传图片测试类中找到
 
-130 zookeeper 单机版：
-	130机器：/opt/zookeeper-3.4.13/bin/zkServer.sh start 就OK了
+140用的solr单机版，zookeeper集群，再配置solr集群吧（暂时没成功）,activeMq
 
 140 solr单机版： portal-web依赖
 	search服务需要开启 /opt/tomcat-8.0.53/bin/start.sh
 
+130 zookeeper 单机版：
+	130机器：/opt/zookeeper-3.4.13/bin/zkServer.sh start 就OK了
 
 130 redis集群，开启  solr依赖
 	就用redis单机版吧
 	/root/np/redis-4.0.11/src/redis-server /root/np/redis-4.0.11/redis.conf
 
+130-140 /opt/tomcat-8.0.53都有dubbo-admin，配置文件中，注册中心zookeeper写的127.0.0.1
+而zookeeper只有130有，所以只有130的dubbo-admin有用
+
+130用的：zookeeper单机版，redis集群
+
+130 nginx
 
 项目搜索：search-web，进入portal-web后选择关键字搜索，就会调用search模块，进入search-web
 
@@ -48,7 +48,14 @@ e3商城启动：  下面的linux后台程序应该是最先启动的，然后�
 然后后台管理商品的页面，比如增加商品，查询商品等就可以看到了
 
 
+项目部署：
+160的机器部署：
+e3-content	提供者
+e3-manager	提供者
+e3-search   提供者
 
+140机器部署：
+e3-manager-web 	消费者
 
 
 
