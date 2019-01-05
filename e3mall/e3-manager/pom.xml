@@ -42,8 +42,10 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <path>/</path>
-                    <port>8888</port>
+                    <path>/e3-manager</path>
+                    <url>http://192.168.1.160:8080/manager/text</url>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
                 </configuration>
             </plugin>
         </plugins>
