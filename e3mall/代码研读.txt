@@ -1,4 +1,6 @@
 （1）mapper.xml文件中，可以抽取Base_Column_List，达到共用，精简代码
+mybatis逆向工程创建JavaBean的数量是数据库的两倍，一个是与数据库字段对应的bean，一个是查询条件封装的bean
+
 （2）消息队列的封装：JMS厂商提供一个ActiveMQConnectionFactory，spring对其进行封装，
 得到spring的connectionFactory，然后交给JmsTemplate，最后实际代码中用的就是JmsTemplate，
 解耦合，方便不同消息中间件的切换
@@ -26,3 +28,9 @@ OK：
     formatToPojo：有将json转化为其他对象，然后通过E3Result build再转化为E3Result对象
     formatToList：有将json转化为集合，然后通过E3Result build再转化为E3Result对象
 
+
+JsonUtils
+    三大方法：
+    String objectToJson(Object data)
+    T jsonToPojo(String jsonData, Class<T> beanType)
+    List<T> jsonToList(String jsonData, Class<T> beanType)
