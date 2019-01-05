@@ -34,3 +34,13 @@ JsonUtils
     String objectToJson(Object data)
     T jsonToPojo(String jsonData, Class<T> beanType)
     List<T> jsonToList(String jsonData, Class<T> beanType)
+
+JedisClient
+    自定义有些redis常见操作方法，作为接口
+    jedisClientPool类实现接口，添加JedisPool jedisPool，接口中方法通过jedisPool实现，
+    而jedisPool是spring在创建jedisClient类型对象的时候，注入的jedisPool，这是真正的
+    redis操作客户端。这就是redis的单机版
+    jedisClientCluster实现接口，添加JedisCluster jedisCluster，接口中的方法通过jedisCluster
+    实现。而JedisCluster jedisCluster是spring注入的。JedisCluster jedisCluster是真正的redis
+    操作客户端
+
