@@ -1,0 +1,28 @@
+（1）mapper.xml文件中，可以抽取Base_Column_List，达到共用，精简代码
+（2）消息队列的封装：JMS厂商提供一个ActiveMQConnectionFactory，spring对其进行封装，
+得到spring的connectionFactory，然后交给JmsTemplate，最后实际代码中用的就是JmsTemplate，
+解耦合，方便不同消息中间件的切换
+（3）ObjectMapper的readValue方法很强大，有很多重载方法，可以将流或者字符串解析成对应的class对象，
+如果没有传递class参数，还可以直接将字符串通过readTree方法转化为jsonNode使用
+
+（4）E3Result的封装：msg,status,data三个属性不可少；然后是一些列构造器；以及将json数据转化为E3Result的封装方法
+实现Serializale接口，因为需要转化为json，在网络中传输
+构造器：
+    无参：
+    全参：
+    一参：默认200，OK，只需要data参数
+
+build：
+    两参：一般data是null的，往往是错误信息
+    三参：能正常返回，OK的，需要data参数，接收json转化成的data
+OK：
+    一参：data参数，直接返回成功
+    无参：也是返回成功
+
+    之所以有OK方法，而无失败方法，是因为成功只有一种，失败很多，没法抽象出来
+
+其中json转化：
+    有直接将json转化为E3Result的，
+    formatToPojo：有将json转化为其他对象，然后通过E3Result build再转化为E3Result对象
+    formatToList：有将json转化为集合，然后通过E3Result build再转化为E3Result对象
+
